@@ -1,0 +1,26 @@
+
+
+# instalar o flask
+pip install Flask flask-cors
+
+# Para rodar:
+python3 api.py
+
+# Alterar a base URL para:
+REACT_APP_BASE_URL=http://127.0.0.1:5000
+
+# Para testar:
+( \
+echo "--- 1. GET /usuarios (Estado Inicial) ---" && \
+curl -s http://localhost:5000/usuarios | jq && \
+echo "\n--- 2. POST /usuarios (Criando ID 6: usuario06) ---" && \
+curl -s -X POST -H "Content-Type: application/json" -d '{"login": "usuario06", "senha": "1", "cpf": "666", "admin": false}' http://localhost:5000/usuarios | jq && \
+echo "\n--- 3. GET /usuarios/3 (Buscando usuario03) ---" && \
+curl -s http://localhost:5000/usuarios/3 | jq && \
+echo "\n--- 4. PUT /usuarios/3 (Atualizando admin do usuario03) ---" && \
+curl -s -X PUT -H "Content-Type: application/json" -d '{"id": 3, "login": "usuario03", "senha": "1", "senhaRepeticao": "1", "cpf": "111111111", "admin": false}' http://localhost:5000/usuarios/3 | jq && \
+echo "\n--- 5. DELETE /usuarios/1 (Excluindo usuario01) ---" && \
+curl -s -X DELETE http://localhost:5000/usuarios/1 | jq && \
+echo "\n--- 6. GET /usuarios (Estado Final) ---" && \
+curl -s http://localhost:5000/usuarios | jq \
+)

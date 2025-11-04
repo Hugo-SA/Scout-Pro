@@ -62,7 +62,7 @@ function ListagemCompeticoes() {
 
   return (
     <div className='container' style={{ marginTop: '100px' }}>
-      <Card title='Listagem de Times'>
+      <Card title='Listagem de Competições'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -77,6 +77,9 @@ function ListagemCompeticoes() {
                 <thead>
                   <tr>
                     <th scope='col'>Nome</th>
+                    <th scope='col'>Data Inicio</th>
+                    <th scope='col'>Data Fim</th>
+                    <th scope='col'>Time</th>
                     <th scope='col'>Ações</th>
                   </tr>
                 </thead>
@@ -84,6 +87,9 @@ function ListagemCompeticoes() {
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
+                      <td>{dado.dataInicio}</td>
+                      <td>{dado.dataTermino}</td>
+                      <td>{dado.nomeTime}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton

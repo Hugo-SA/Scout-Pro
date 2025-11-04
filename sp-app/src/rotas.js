@@ -5,6 +5,7 @@ import ListagemCompeticao from './views/listagem/listagem-competicao';
 import ListagemJogador from './views/listagem/listagem-jogador';
 import ListagemTecnico from './views/listagem/listagem-tecnico';
 import ListagemTimes from './views/listagem/listagem-times';
+import CadastroTecnico from './views/cadastro/cadastro-tecnico'
 
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ function Rotas(props) {
         <Route path='/listagem-jogador' element={<ListagemJogador />} />
         <Route path='/listagem-tecnico' element={<ListagemTecnico />} />
         <Route path='/listagem-times' element={<ListagemTimes />} />
+        <Route path='/cadastro-tecnico/:idParam?' element={<CadastroTecnico />} />
       </Routes>
     </BrowserRouter>
   );

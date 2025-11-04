@@ -60,55 +60,61 @@ function ListagemJogadores() {
 
   if (!dados) return null;
 
-  return (
-    <div className='container' style={{ marginTop: '100px' }}>
-      <Card title='Listagem de Jogadores'>
-        <div className='row'>
-          <div className='col-lg-12'>
-            <div className='bs-component'>
-              <button
-                type='button'
-                className='btn btn-warning'
-                onClick={() => cadastrar()}
-              >
-                Novo Jogador
-              </button>
-              <table className='table table-hover'>
-                <thead>
-                  <tr>
-                    <th scope='col'>Nome</th>
-                    <th scope='col'>Ações</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {dados.map((dado) => (
-                    <tr key={dado.id}>
-                      <td>{dado.nome}</td>
-                      <td>
-                        <Stack spacing={1} padding={0} direction='row'>
-                          <IconButton
-                            aria-label='edit'
-                            onClick={() => editar(dado.id)}
-                          >
-                            <EditIcon />
-                          </IconButton>
-                          <IconButton
-                            aria-label='delete'
-                            onClick={() => excluir(dado.id)}
-                          >
-                            <DeleteIcon />
-                          </IconButton>
-                        </Stack>
-                      </td>
+    return (
+      <div className='container' style={{ marginTop: '100px' }}>
+        <Card title='Listagem de Jogadores'>
+          <div className='row'>
+            <div className='col-lg-12'>
+              <div className='bs-component'>
+                <button
+                  type='button'
+                  className='btn btn-warning'
+                  onClick={() => cadastrar()}
+                >
+                  Novo Jogador
+                </button>
+                <table className='table table-hover'>
+                  <thead>
+                    <tr>
+                      <th scope='col'>Nome</th>
+                      <th scope='col'>Idade</th>
+                      <th scope='col'>Posição</th>
+                      <th scope='col'>Pé dominante</th>
+                      <th scope='col'>Ações</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>{' '}
+                  </thead>
+                  <tbody>
+                    {dados.map((dado) => (
+                      <tr key={dado.id}>
+                        <td>{dado.nome}</td>
+                        <td>{dado.idade}</td>
+                        <td>{dado.posicao}</td>
+                        <td>{dado.pePreferido}</td>
+                        <td>
+                          <Stack spacing={1} padding={0} direction='row'>
+                            <IconButton
+                              aria-label='edit'
+                              onClick={() => editar(dado.id)}
+                            >
+                              <EditIcon />
+                            </IconButton>
+                            <IconButton
+                              aria-label='delete'
+                              onClick={() => excluir(dado.id)}
+                            >
+                              <DeleteIcon />
+                            </IconButton>
+                          </Stack>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>{' '}
+              </div>
             </div>
           </div>
-        </div>
-      </Card>
-    </div>
+        </Card>
+      </div>
   );
 }
 

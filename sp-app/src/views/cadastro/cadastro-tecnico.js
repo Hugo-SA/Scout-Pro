@@ -30,6 +30,7 @@ function CadastroTecnico() {
     if (idParam == null) {
       setId('');
       setNome('');
+      setIdade('');
     } else {
       setId(dados.id);
       setNome(dados.nome);
@@ -74,6 +75,7 @@ function CadastroTecnico() {
     });
     setId(dados.id);
     setNome(dados.nome);
+    setIdade(dados.idade);
     }
   }
 

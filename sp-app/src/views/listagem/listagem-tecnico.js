@@ -77,6 +77,7 @@ function ListagemTecnicos() {
                 <thead>
                   <tr>
                     <th scope='col'>Nome</th>
+                    <th scope='col'>Idade</th>
                     <th scope='col'>Ações</th>
                   </tr>
                 </thead>
@@ -84,6 +85,7 @@ function ListagemTecnicos() {
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
+                      <td>{dado.idade}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton

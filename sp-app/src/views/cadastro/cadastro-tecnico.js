@@ -22,6 +22,7 @@ function CadastroTecnico() {
 
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
+  const [idade, setIdade] = useState('');
 
   const [dados, setDados] = React.useState([]);
 
@@ -32,6 +33,7 @@ function CadastroTecnico() {
     } else {
       setId(dados.id);
       setNome(dados.nome);
+      setIdade(dados.idade);
     }
   }
 
@@ -95,6 +97,16 @@ function CadastroTecnico() {
                   className='form-control'
                   name='nome'
                   onChange={(e) => setNome(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup label='Idade: *' htmlFor='inputIdade'>
+                <input
+                  type='text'
+                  id='inputIdade'
+                  value={idade}
+                  className='form-control'
+                  name='idade'
+                  onChange={(e) => setIdade(e.target.value)}
                 />
               </FormGroup>
               <Stack spacing={1} padding={1} direction='row'>

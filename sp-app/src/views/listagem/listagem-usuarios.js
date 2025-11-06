@@ -22,11 +22,11 @@ function ListagemUsuarios() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-    navigate(`/cadastro-usuario`);
+    navigate(`/cadastro-usuarios`);
   };
 
   const editar = (id) => {
-    navigate(`/cadastro-usuario/${id}`);
+    navigate(`/cadastro-usuarios/${id}`);
   };
 
   const [dados, setDados] = React.useState(null);
@@ -61,7 +61,7 @@ function ListagemUsuarios() {
   if (!dados) return null;
 
   return (
-    <div className='container'>
+    <div className='container' style={{ marginTop: '100px' }}>
       <Card title='Listagem de Usuarios'>
         <div className='row'>
           <div className='col-lg-12'>
@@ -76,14 +76,14 @@ function ListagemUsuarios() {
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th scope='col'>Nome</th>
+                    <th scope='col'>Login</th>
                     <th scope='col'>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td>{dado.nome}</td>
+                      <td>{dado.login}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton

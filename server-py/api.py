@@ -33,22 +33,29 @@ class JsonDataProvider:
             { "id": 5, "idTecnico": "5", "nome": "Jogador 5", "idade": "1", "pePreferido": "direito", "posicao": "zagueiro", "altura": "1" }
         ].copy()
 
-    def competicao(self):
+    def competicoes(self):
         return [
-            { "id": 1, "idTime": "1", "nome": "Competicao 1", "dataInicio": "11-11-1111", "dataTermino": "22-22-2222" },
-            { "id": 2, "idTime": "2", "nome": "Competicao 2", "dataInicio": "11-11-1111", "dataTermino": "22-22-2222" },
-            { "id": 3, "idTime": "3", "nome": "Competicao 3", "dataInicio": "11-11-1111", "dataTermino": "22-22-2222" },
-            { "id": 4, "idTime": "4", "nome": "Competicao 4", "dataInicio": "11-11-1111", "dataTermino": "22-22-2222" },
-            { "id": 5, "idTime": "5", "nome": "Competicao 5", "dataInicio": "11-11-1111", "dataTermino": "22-22-2222" }
+            { "id": 1, "idTime": "1", "nome": "Competicao 1", "dataInicio": "11-11-1111", "dataTermino": "22-22-2222", "nomeTime": "Time 1" },
+            { "id": 2, "idTime": "2", "nome": "Competicao 2", "dataInicio": "11-11-1111", "dataTermino": "22-22-2222", "nomeTime": "Time 2" },
+            { "id": 3, "idTime": "3", "nome": "Competicao 3", "dataInicio": "11-11-1111", "dataTermino": "22-22-2222", "nomeTime": "Time 3" },
+            { "id": 4, "idTime": "4", "nome": "Competicao 4", "dataInicio": "11-11-1111", "dataTermino": "22-22-2222", "nomeTime": "Time 4" },
+            { "id": 5, "idTime": "5", "nome": "Competicao 5", "dataInicio": "11-11-1111", "dataTermino": "22-22-2222", "nomeTime": "Time 5" }
         ].copy()
 
-    def tecnico(self):
+    def tecnicos(self):
         return [
             { "id": 1, "nome": "Tecnico 1", "idade": "1" },
             { "id": 2, "nome": "Tecnico 2", "idade": "1" },
             { "id": 3, "nome": "Tecnico 3", "idade": "1" },
             { "id": 4, "nome": "Tecnico 4", "idade": "1" },
             { "id": 5, "nome": "Tecnico 5", "idade": "1" }
+        ].copy()
+    def estatísticas(self):
+        return [
+            { "id": 1, "idJogador": "1", "partidasJogadas": "10", "gols": "5", "assistencias": "3" },
+            { "id": 2, "idJogador": "2", "partidasJogadas": "12", "gols": "7", "assistencias": "4" },
+            { "id": 3, "idJogador": "3", "partidasJogadas": "8", "gols": "2", "assistencias": "1" },
+            { "id": 4, "idJogador": "4", "partidasJogadas": "15", "gols": "10", "assistencias": "6" }
         ].copy()
 
 class ResourceService:

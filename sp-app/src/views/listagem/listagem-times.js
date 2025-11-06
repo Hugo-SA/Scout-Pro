@@ -61,7 +61,7 @@ function ListagemTimes() {
   if (!dados) return null;
 
   return (
-    <div className='container' style={{ marginTop: '100px' }}>
+    <div className='container'>
       <Card title='Listagem de Times'>
         <div className='row'>
           <div className='col-lg-12'>

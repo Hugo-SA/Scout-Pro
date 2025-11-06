@@ -16,17 +16,17 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';
 
-const baseURL = `${BASE_URL}/usuarios`;
+const baseURL = `${BASE_URL}/jogadores`;
 
-function ListagemUsuarios() {
+function ListagemJogadores() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-    navigate(`/cadastro-usuario`);
+    navigate(`/cadastro-jogadores`);
   };
 
   const editar = (id) => {
-    navigate(`/cadastro-usuario/${id}`);
+    navigate(`/cadastro-jogadores/${id}`);
   };
 
   const [dados, setDados] = React.useState(null);
@@ -40,7 +40,7 @@ function ListagemUsuarios() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso(`Usuario excluído com sucesso!`);
+        mensagemSucesso(`Jogador excluído com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -48,7 +48,7 @@ function ListagemUsuarios() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir o usuario`);
+        mensagemErro(`Erro ao excluir o jogador`);
       });
   }
 
@@ -62,7 +62,7 @@ function ListagemUsuarios() {
 
   return (
     <div className='container'>
-      <Card title='Listagem de Usuarios'>
+      <Card title='Listagem de Jogadores'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -71,7 +71,7 @@ function ListagemUsuarios() {
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
-                Novo Usuario
+                Novo Jogador
               </button>
               <table className='table table-hover'>
                 <thead>
@@ -112,4 +112,4 @@ function ListagemUsuarios() {
   );
 }
 
-export default ListagemUsuarios;
+export default ListagemJogadores;

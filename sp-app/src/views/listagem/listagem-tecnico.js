@@ -16,17 +16,17 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';
 
-const baseURL = `${BASE_URL}/competicoes`;
+const baseURL = `${BASE_URL}/tecnico`;
 
-function ListagemCompeticoes() {
+function ListagemTecnicos() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-    navigate(`/cadastro-competicoes`);
+    navigate(`/cadastro-tecnico`);
   };
 
   const editar = (id) => {
-    navigate(`/cadastro-competicoes/${id}`);
+    navigate(`/cadastro-tecnicos/${id}`);
   };
 
   const [dados, setDados] = React.useState(null);
@@ -40,7 +40,7 @@ function ListagemCompeticoes() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso(`Competicao excluído com sucesso!`);
+        mensagemSucesso(`Tecnico excluído com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -48,7 +48,7 @@ function ListagemCompeticoes() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir a competicao`);
+        mensagemErro(`Erro ao excluir o tecnico`);
       });
   }
 
@@ -61,8 +61,8 @@ function ListagemCompeticoes() {
   if (!dados) return null;
 
   return (
-    <div className='container' style={{ marginTop: '100px' }}>
-      <Card title='Listagem de Competições'>
+    <div className='container'>
+      <Card title='Listagem de Tecnicos'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -71,15 +71,12 @@ function ListagemCompeticoes() {
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
-                Nova Competicao
+                Novo Tecnico
               </button>
               <table className='table table-hover'>
                 <thead>
                   <tr>
                     <th scope='col'>Nome</th>
-                    <th scope='col'>Data Inicio</th>
-                    <th scope='col'>Data Fim</th>
-                    <th scope='col'>Time</th>
                     <th scope='col'>Ações</th>
                   </tr>
                 </thead>
@@ -87,9 +84,6 @@ function ListagemCompeticoes() {
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
-                      <td>{dado.dataInicio}</td>
-                      <td>{dado.dataTermino}</td>
-                      <td>{dado.nomeTime}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton
@@ -118,4 +112,4 @@ function ListagemCompeticoes() {
   );
 }
 
-export default ListagemCompeticoes;
+export default ListagemTecnicos;

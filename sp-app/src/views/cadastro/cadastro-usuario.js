@@ -18,7 +18,7 @@ function CadastroUsuario() {
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL}/usuario`;
+  const baseURL = `${BASE_URL}/usuarios`;
 
   const [id, setId] = useState('');
   const [login, setLogin] = useState('');

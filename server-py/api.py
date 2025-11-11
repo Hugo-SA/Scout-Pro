@@ -26,11 +26,11 @@ class JsonDataProvider:
 
     def jogadores(self):
         return [
-            { "id": 1, "idTecnico": "1", "nome": "Jogador 1", "idade": "1", "pePreferido": "esquerdo", "posicao": "goleiro", "altura": "1" },
-            { "id": 2, "idTecnico": "2", "nome": "Jogador 2", "idade": "1", "pePreferido": "esquerdo", "posicao": "atacante", "altura": "1" },
-            { "id": 3, "idTecnico": "3", "nome": "Jogador 3", "idade": "1", "pePreferido": "esquerdo", "posicao": "meio-campo", "altura": "1" },
-            { "id": 4, "idTecnico": "4", "nome": "Jogador 4", "idade": "1", "pePreferido": "direito", "posicao": "lateral", "altura": "1" },
-            { "id": 5, "idTecnico": "5", "nome": "Jogador 5", "idade": "1", "pePreferido": "direito", "posicao": "zagueiro", "altura": "1" }
+            { "id": 1, "idTime": "1", "nome": "Jogador 1", "idade": "1", "pePreferido": "esquerdo", "posicao": "goleiro", "altura": "1" },
+            { "id": 2, "idTime": "2", "nome": "Jogador 2", "idade": "1", "pePreferido": "esquerdo", "posicao": "atacante", "altura": "1" },
+            { "id": 3, "idTime": "3", "nome": "Jogador 3", "idade": "1", "pePreferido": "esquerdo", "posicao": "meio-campo", "altura": "1" },
+            { "id": 4, "idTime": "4", "nome": "Jogador 4", "idade": "1", "pePreferido": "direito", "posicao": "lateral", "altura": "1" },
+            { "id": 5, "idTime": "5", "nome": "Jogador 5", "idade": "1", "pePreferido": "direito", "posicao": "zagueiro", "altura": "1" }
         ].copy()
 
     def competicao(self):

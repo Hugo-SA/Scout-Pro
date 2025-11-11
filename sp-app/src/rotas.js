@@ -8,6 +8,7 @@ import ListagemTimes from './views/listagem/listagem-times';
 import CadastroTecnico from './views/cadastro/cadastro-tecnico'
 import CadastroTime from './views/cadastro/cadastro-time'
 import CadastroUsuario from './views/cadastro/cadastro-usuario'
+import CadastroJogador from './views/cadastro/cadastro-jogador'
 
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
@@ -24,6 +25,7 @@ function Rotas(props) {
         <Route path='/cadastro-tecnico/:idParam?' element={<CadastroTecnico />} />
         <Route path='/cadastro-usuarios/:idParam?' element={<CadastroUsuario />} />
         <Route path='/cadastro-time/:idParam?' element={<CadastroTime />} />
+        <Route path='/cadastro-jogador/:idParam?' element={<CadastroJogador />} />
       </Routes>
     </BrowserRouter>
   );

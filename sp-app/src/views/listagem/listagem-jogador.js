@@ -22,11 +22,11 @@ function ListagemJogadores() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-    navigate(`/cadastro-jogadores`);
+    navigate(`/cadastro-jogador`);
   };
 
   const editar = (id) => {
-    navigate(`/cadastro-jogadores/${id}`);
+    navigate(`/cadastro-jogador/${id}`);
   };
 
   const [dados, setDados] = React.useState(null);

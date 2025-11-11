@@ -13,16 +13,16 @@ import { mensagemSucesso, mensagemErro } from '../../components/toastr';
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';
 
-function CadastroTime() {
+function CadastroJogador() {
   const { idParam } = useParams();
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL}/times`;
+  const baseURL = `${BASE_URL}/jogadores`;
 
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
-  const [idTecnico, setIdTecnico] = useState(0);
+  const [idTime, setIdTime] = useState(0);
 
   const [dados, setDados] = React.useState([]);
 
@@ -30,11 +30,11 @@ function CadastroTime() {
     if (idParam == null) {
       setId('');
       setNome('');
-      setIdTecnico(0)
+      setIdTime(0);
     } else {
       setId(dados.id);
       setNome(dados.nome);
-      setIdTecnico(dados.idTecnico);
+      setIdTime(dados.idTime);
     }
   }
 
@@ -47,8 +47,8 @@ function CadastroTime() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Time ${nome} cadastrado com sucesso!`);
-          navigate(`/listagem-times`);
+          mensagemSucesso(`Jogador ${nome} cadastrado com sucesso!`);
+          navigate(`/listagem-jogador`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -59,8 +59,8 @@ function CadastroTime() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Time ${nome} alterado com sucesso!`);
-          navigate(`/listagem-times`);
+          mensagemSucesso(`Jogador ${nome} alterado com sucesso!`);
+          navigate(`/listagem-jogador`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -75,15 +75,15 @@ function CadastroTime() {
     });
     setId(dados.id);
     setNome(dados.nome);
-    setIdTecnico(dados.idTecnico);
+    setIdTime(dados.idTime);
     }
   }
-  
-  const [dadosTecnicos, setDadosTecnicos] = React.useState(null);
+
+  const [dadosTimes, setDadosTimes] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/tecnico`).then((response) => {
-      setDadosTecnicos(response.data);
+    axios.get(`${BASE_URL}/times`).then((response) => {
+      setDadosTimes(response.data);
     });
   }, []);
 
@@ -92,11 +92,11 @@ function CadastroTime() {
   }, [id]);
 
   if (!dados) return null;
-  if (!dadosTecnicos) return null;
+  if (!dadosTimes) return null;
 
   return (
     <div className='container'>
-      <Card title='Cadastro de Times'>
+      <Card title='Cadastro de Jogador'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -110,18 +110,18 @@ function CadastroTime() {
                   onChange={(e) => setNome(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Tecnico: *' htmlFor='selectTecnico'>
+              <FormGroup label='Time: *' htmlFor='selectTime'>
                 <select
                   className='form-select'
-                  id='selectTecnico'
-                  name='idTecnico'
-                  value={idTecnico}
-                  onChange={(e) => setIdTecnico(e.target.value)}
+                  id='selectTime'
+                  name='idTime'
+                  value={idTime}
+                  onChange={(e) => setIdTime(e.target.value)}
                 >
                   <option key='0' value='0'>
                     {' '}
                   </option>
-                  {dadosTecnicos.map((dado) => (
+                  {dadosTimes.map((dado) => (
                     <option key={dado.id} value={dado.id}>
                       {dado.nome}
                     </option>
@@ -152,4 +152,4 @@ function CadastroTime() {
   );
 }
 
-export default CadastroTime;
+export default CadastroJogador;

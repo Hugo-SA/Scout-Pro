@@ -23,6 +23,7 @@ function Rotas(props) {
         <Route path='/listagem-times' element={<ListagemTimes />} />
         <Route path='/cadastro-tecnico/:idParam?' element={<CadastroTecnico />} />
         <Route path='/cadastro-usuarios/:idParam?' element={<CadastroUsuario />} />
+        <Route path='/cadastro-time/:idParam?' element={<CadastroTime />} />
       </Routes>
     </BrowserRouter>
   );

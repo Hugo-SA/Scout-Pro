@@ -22,11 +22,11 @@ function ListagemTimes() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-    navigate(`/cadastro-times`);
+    navigate(`/cadastro-time`);
   };
 
   const editar = (id) => {
-    navigate(`/cadastro-times/${id}`);
+    navigate(`/cadastro-time/${id}`);
   };
 
   const [dados, setDados] = React.useState(null);

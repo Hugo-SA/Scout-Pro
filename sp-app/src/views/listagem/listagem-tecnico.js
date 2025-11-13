@@ -26,7 +26,7 @@ function ListagemTecnicos() {
   };
 
   const editar = (id) => {
-    navigate(`/cadastro-tecnicos/${id}`);
+    navigate(`/cadastro-tecnico/${id}`);
   };
 
   const [dados, setDados] = React.useState(null);

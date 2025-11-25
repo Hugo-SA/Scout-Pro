@@ -8,7 +8,7 @@ function Navbar(props) {
     <div className='navbar navbar-expand-lg fixed-top navbar-dark bg-primary'>
       <div className='container'>
         <a href='/' className='navbar-brand'>
-          SCAC
+          SCOUT-PRO
         </a>
         <button
           className='navbar-toggler'

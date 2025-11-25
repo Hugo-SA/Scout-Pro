@@ -8,8 +8,6 @@ import FormGroup from '../../components/form-group';
 
 import { mensagemSucesso, mensagemErro } from '../../components/toastr';
 
-//import '../custom.css';
-
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';
 
@@ -23,6 +21,10 @@ function CadastroJogador() {
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
   const [idTime, setIdTime] = useState(0);
+  const [idade, setIdade] = useState(''); //  Novo campo
+  const [posicao, setPosicao] = useState(''); //  Novo campo
+  const [pePreferido, setPePreferido] = useState(''); //  Novo campo
+  const [altura, setAltura] = useState(''); //  Novo campo
 
   const [dados, setDados] = React.useState([]);
 
@@ -31,15 +33,24 @@ function CadastroJogador() {
       setId('');
       setNome('');
       setIdTime(0);
+      setIdade(''); 
+      setPosicao(''); 
+      setPePreferido(''); 
+      setAltura(''); 
     } else {
       setId(dados.id);
       setNome(dados.nome);
       setIdTime(dados.idTime);
+      setIdade(dados.idade); 
+      setPosicao(dados.posicao); 
+      setPePreferido(dados.pePreferido); 
+      setAltura(dados.altura); 
     }
   }
 
+  //  Incluir todos os campos no objeto data
   async function salvar() {
-    let data = { id, nome };
+    let data = { id, nome, idTime, idade, posicao, pePreferido, altura };
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -69,13 +80,17 @@ function CadastroJogador() {
   }
 
   async function buscar() {
-    if(idParam != null){
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
-      setDados(response.data);
-    });
-    setId(dados.id);
-    setNome(dados.nome);
-    setIdTime(dados.idTime);
+    if (idParam != null) {
+      await axios.get(`${baseURL}/${idParam}`).then((response) => {
+        setDados(response.data);
+      });
+      setId(dados.id);
+      setNome(dados.nome);
+      setIdTime(dados.idTime);
+      setIdade(dados.idade); 
+      setPosicao(dados.posicao); 
+      setPePreferido(dados.pePreferido); 
+      setAltura(dados.altura); 
     }
   }
 
@@ -128,6 +143,64 @@ function CadastroJogador() {
                   ))}
                 </select>
               </FormGroup>
+
+              <FormGroup label='Idade:' htmlFor='inputIdade'>
+                <input
+                  type='number'
+                  id='inputIdade'
+                  value={idade}
+                  className='form-control'
+                  name='idade'
+                  onChange={(e) => setIdade(e.target.value)}
+                />
+              </FormGroup>
+
+              <FormGroup label='Posição: *' htmlFor='selectPosicao'>
+                <select
+                  className='form-select'
+                  id='selectPosicao'
+                  name='posicao'
+                  value={posicao}
+                  onChange={(e) => setPosicao(e.target.value)}
+                >
+                  <option value=''>Selecione uma posição</option>
+                  <option value='goleiro'>Goleiro</option>
+                  <option value='lateral'>Lateral</option>
+                  <option value='zagueiro'>Zagueiro</option>
+                  <option value='meio-campo'>Meio-Campo</option>
+                  <option value='meia'>Meia</option>
+                  <option value='atacante'>Atacante</option>
+                </select>
+              </FormGroup>
+
+              <FormGroup label='Pé Preferido: *' htmlFor='selectPePreferido'>
+                <select
+                  className='form-select'
+                  id='selectPePreferido'
+                  name='pePreferido'
+                  value={pePreferido}
+                  onChange={(e) => setPePreferido(e.target.value)}
+                >
+                  <option value=''>Selecione um pé</option>
+                  <option value='direito'>Direito</option>
+                  <option value='esquerdo'>Esquerdo</option>
+                  <option value='ambidestro'>Ambidestro</option>
+                </select>
+              </FormGroup>
+
+              {/*  Novo campo de altura */}
+              <FormGroup label='Altura (cm):' htmlFor='inputAltura'>
+                <input
+                  type='number'
+                  id='inputAltura'
+                  value={altura}
+                  className='form-control'
+                  name='altura'
+                  onChange={(e) => setAltura(e.target.value)}
+                  placeholder='Ex: 185'
+                />
+              </FormGroup>
+
               <Stack spacing={1} padding={1} direction='row'>
                 <button
                   onClick={salvar}

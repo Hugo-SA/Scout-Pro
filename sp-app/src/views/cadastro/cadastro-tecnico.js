@@ -39,7 +39,7 @@ function CadastroTecnico() {
   }
 
   async function salvar() {
-    let data = { id, nome };
+    let data = { id, nome, idade};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios

@@ -4,8 +4,6 @@ import Card from '../../components/card';
 
 import { mensagemSucesso, mensagemErro } from '../../components/toastr';
 
-//import '../custom.css';
-
 import { useNavigate } from 'react-router-dom';
 
 import Stack from '@mui/material/Stack';
@@ -18,7 +16,7 @@ import { BASE_URL } from '../../config/axios';
 
 const baseURL = `${BASE_URL}/tecnico`;
 
-function ListagemTecnicos() {
+function ListagemTecnico() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
@@ -30,6 +28,7 @@ function ListagemTecnicos() {
   };
 
   const [dados, setDados] = React.useState(null);
+  const [times, setTimes] = React.useState({});
 
   async function excluir(id) {
     let data = JSON.stringify({ id });
@@ -40,7 +39,7 @@ function ListagemTecnicos() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso(`Tecnico excluído com sucesso!`);
+        mensagemSucesso(`Técnico excluído com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -48,9 +47,19 @@ function ListagemTecnicos() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir o tecnico`);
+        mensagemErro(`Erro ao excluir o técnico`);
       });
   }
+
+  React.useEffect(() => {
+    axios.get(`${BASE_URL}/times`).then((response) => {
+      const timesMap = {};
+      response.data.forEach((time) => {
+        timesMap[time.idTecnico] = time.nome;
+      });
+      setTimes(timesMap);
+    });
+  }, []);
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
@@ -62,7 +71,7 @@ function ListagemTecnicos() {
 
   return (
     <div className='container'>
-      <Card title='Listagem de Tecnicos'>
+      <Card title='Listagem de Técnicos'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -71,13 +80,14 @@ function ListagemTecnicos() {
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
-                Novo Tecnico
+                Novo Técnico
               </button>
               <table className='table table-hover'>
                 <thead>
                   <tr>
                     <th scope='col'>Nome</th>
                     <th scope='col'>Idade</th>
+                    <th scope='col'>Time</th> 
                     <th scope='col'>Ações</th>
                   </tr>
                 </thead>
@@ -86,6 +96,7 @@ function ListagemTecnicos() {
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
                       <td>{dado.idade}</td>
+                      <td>{times[dado.id] || 'Sem time'}</td> 
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton
@@ -105,7 +116,7 @@ function ListagemTecnicos() {
                     </tr>
                   ))}
                 </tbody>
-              </table>{' '}
+              </table>
             </div>
           </div>
         </div>
@@ -114,4 +125,4 @@ function ListagemTecnicos() {
   );
 }
 
-export default ListagemTecnicos;
+export default ListagemTecnico;

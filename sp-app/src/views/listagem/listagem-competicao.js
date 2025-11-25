@@ -4,8 +4,6 @@ import Card from '../../components/card';
 
 import { mensagemSucesso, mensagemErro } from '../../components/toastr';
 
-//import '../custom.css';
-
 import { useNavigate } from 'react-router-dom';
 
 import Stack from '@mui/material/Stack';
@@ -18,7 +16,7 @@ import { BASE_URL } from '../../config/axios';
 
 const baseURL = `${BASE_URL}/competicao`;
 
-function ListagemCompeticoes() {
+function ListagemCompeticao() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
@@ -30,6 +28,7 @@ function ListagemCompeticoes() {
   };
 
   const [dados, setDados] = React.useState(null);
+  const [times, setTimes] = React.useState({});
 
   async function excluir(id) {
     let data = JSON.stringify({ id });
@@ -40,7 +39,7 @@ function ListagemCompeticoes() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso(`Competicao excluído com sucesso!`);
+        mensagemSucesso(`Competição excluída com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -48,9 +47,19 @@ function ListagemCompeticoes() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir a competicao`);
+        mensagemErro(`Erro ao excluir a competição`);
       });
   }
+
+  React.useEffect(() => {
+    axios.get(`${BASE_URL}/times`).then((response) => {
+      const timesMap = {};
+      response.data.forEach((time) => {
+        timesMap[time.id] = time.nome;
+      });
+      setTimes(timesMap);
+    });
+  }, []);
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
@@ -60,9 +69,17 @@ function ListagemCompeticoes() {
 
   if (!dados) return null;
 
+  // Função para retornar lista de times formatada
+  const getNomesTimesFormatados = (idTimes) => {
+    if (!idTimes || idTimes.length === 0) {
+      return 'Sem times';
+    }
+    return idTimes.map((id) => times[id] || `Time ${id}`).join(', ');
+  };
+
   return (
     <div className='container'>
-      <Card title='Listagem de Times'>
+      <Card title='Listagem de Competições'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -71,12 +88,15 @@ function ListagemCompeticoes() {
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
-                Nova Competicao
+                Nova Competição
               </button>
               <table className='table table-hover'>
                 <thead>
                   <tr>
                     <th scope='col'>Nome</th>
+                    <th scope='col'>Times Participantes</th> 
+                    <th scope='col'>Data Início</th>
+                    <th scope='col'>Data Término</th>
                     <th scope='col'>Ações</th>
                   </tr>
                 </thead>
@@ -84,6 +104,9 @@ function ListagemCompeticoes() {
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
+                      <td>{getNomesTimesFormatados(dado.idTimes)}</td>
+                      <td>{dado.dataInicio}</td>
+                      <td>{dado.dataTermino}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton
@@ -103,7 +126,7 @@ function ListagemCompeticoes() {
                     </tr>
                   ))}
                 </tbody>
-              </table>{' '}
+              </table>
             </div>
           </div>
         </div>
@@ -112,4 +135,4 @@ function ListagemCompeticoes() {
   );
 }
 
-export default ListagemCompeticoes;
+export default ListagemCompeticao;

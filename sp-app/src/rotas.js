@@ -9,14 +9,18 @@ import CadastroTecnico from './views/cadastro/cadastro-tecnico'
 import CadastroTime from './views/cadastro/cadastro-time'
 import CadastroUsuario from './views/cadastro/cadastro-usuario'
 import CadastroJogador from './views/cadastro/cadastro-jogador'
-
+import ListagemJogadoresPorTime from './views/listagem/listagem-jogadores-por-time';
+import ListagemTecnicoPorTime from './views/listagem/listagem-tecnico-por-time';
+import ListagemCompeticoesPorTime from './views/listagem/listagem-competicoes-por-time';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import ListagemEstatisticasJogador from './views/listagem/listagem-estatisticas-jogador'; 
+import CadastroEstatisticasJogador from './views/cadastro/cadastro-estatisticas-jogador'; 
+import CadastroCompeticao from './views/cadastro/cadastro-competicao';
 
 function Rotas(props) {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Suas outras rotas */}
         <Route path='/listagem-usuarios' element={<ListagemUsuarios />} />
         <Route path='/listagem-competicao' element={<ListagemCompeticao />} />
         <Route path='/listagem-jogador' element={<ListagemJogador />} />
@@ -26,6 +30,13 @@ function Rotas(props) {
         <Route path='/cadastro-usuarios/:idParam?' element={<CadastroUsuario />} />
         <Route path='/cadastro-time/:idParam?' element={<CadastroTime />} />
         <Route path='/cadastro-jogador/:idParam?' element={<CadastroJogador />} />
+        <Route path='/jogadores-por-time/:idTime?' element={<ListagemJogadoresPorTime />} />
+        <Route path="/tecnico-por-time/:idTime" element={<ListagemTecnicoPorTime />} />
+        <Route path="/competicoes-por-time/:idTime" element={<ListagemCompeticoesPorTime />} />
+        <Route path="/cadastro-competicao" element={<CadastroCompeticao />} /> 
+        <Route path="/cadastro-competicao/:idParam" element={<CadastroCompeticao />} /> 
+        <Route path="/estatisticas-jogador/:idJogador" element={<ListagemEstatisticasJogador />} /> 
+        <Route path="/cadastro-estatisticas-jogador/:idJogador" element={<CadastroEstatisticasJogador />} />  
       </Routes>
     </BrowserRouter>
   );

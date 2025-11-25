@@ -4,14 +4,14 @@ import Card from '../../components/card';
 
 import { mensagemSucesso, mensagemErro } from '../../components/toastr';
 
-//import '../custom.css';
-
 import { useNavigate } from 'react-router-dom';
 
 import Stack from '@mui/material/Stack';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import PersonIcon from '@mui/icons-material/Person';
+import SchoolIcon from '@mui/icons-material/School';
 
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';
@@ -29,7 +29,23 @@ function ListagemTimes() {
     navigate(`/cadastro-time/${id}`);
   };
 
+  const verJogadores = (id) => {
+    console.log('ID do Time:', id, 'Tipo:', typeof id);
+    navigate(`/jogadores-por-time/${id}`);
+  };
+
+  const verTecnico = (id) => {
+    console.log('ID do Time para técnico:', id, 'Tipo:', typeof id);
+    navigate(`/tecnico-por-time/${id}`);
+  };
+
+  const verCompeticoes = (id) => {
+    console.log('ID do Time para competições:', id, 'Tipo:', typeof id);
+    navigate(`/competicoes-por-time/${id}`);
+  };
+
   const [dados, setDados] = React.useState(null);
+  const [tecnicos, setTecnicos] = React.useState({}); 
 
   async function excluir(id) {
     let data = JSON.stringify({ id });
@@ -51,6 +67,16 @@ function ListagemTimes() {
         mensagemErro(`Erro ao excluir o time`);
       });
   }
+
+  React.useEffect(() => {
+    axios.get(`${BASE_URL}/tecnico`).then((response) => {
+      const tecnicosMap = {};
+      response.data.forEach((tecnico) => {
+        tecnicosMap[tecnico.id] = tecnico.nome;
+      });
+      setTecnicos(tecnicosMap);
+    });
+  }, []);
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
@@ -77,6 +103,7 @@ function ListagemTimes() {
                 <thead>
                   <tr>
                     <th scope='col'>Nome</th>
+                    <th scope='col'>Técnico</th>
                     <th scope='col'>Ações</th>
                   </tr>
                 </thead>
@@ -84,8 +111,23 @@ function ListagemTimes() {
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
+                      <td>{tecnicos[dado.idTecnico] || 'Sem técnico'}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
+                          <IconButton
+                            aria-label='tecnico'
+                            onClick={() => verTecnico(dado.id)}
+                            title='Ver Técnico'
+                          >
+                            <SchoolIcon />
+                          </IconButton>
+                          <IconButton
+                            aria-label='jogadores'
+                            onClick={() => verJogadores(dado.id)}
+                            title='Ver Jogadores'
+                          >
+                            <PersonIcon />
+                          </IconButton>
                           <IconButton
                             aria-label='edit'
                             onClick={() => editar(dado.id)}
@@ -103,7 +145,7 @@ function ListagemTimes() {
                     </tr>
                   ))}
                 </tbody>
-              </table>{' '}
+              </table>
             </div>
           </div>
         </div>

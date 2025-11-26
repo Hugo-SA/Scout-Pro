@@ -118,7 +118,7 @@ function CadastroEstatisticasJogador() {
           setPartidasJogadas(responseEstat.data.partidasJogadas);
         } catch (error) {
           // Estatísticas não existem ainda
-          console.log('Estatísticas não encontradas, será criada uma nova');
+          mensagemErro('Estatísticas não encontradas, será criada uma nova');
         }
       } catch (error) {
         mensagemErro('Erro ao buscar jogador');
@@ -135,7 +135,7 @@ function CadastroEstatisticasJogador() {
       <div className='container'>
         <Card title='Carregando...'>
           <div style={{ textAlign: 'center', padding: '20px' }}>
-            ⏳ Carregando...
+            Carregando...
           </div>
         </Card>
       </div>

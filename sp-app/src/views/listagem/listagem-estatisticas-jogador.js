@@ -21,19 +21,15 @@ function ListagemEstatisticasJogador() {
   async function buscarJogador() {
     try {
       if (!idJogador || isNaN(idJogador)) {
-        console.error(' idJogador inválido:', idJogador);
         setJogador(null);
         return;
       }
 
       const idJogadorInt = parseInt(idJogador, 10);
-      console.log(' Buscando jogador com ID:', idJogadorInt);
 
       const response = await axios.get(`${BASE_URL}/jogadores/${idJogadorInt}`);
-      console.log(' Jogador encontrado:', response.data);
       setJogador(response.data);
     } catch (error) {
-      console.error(' Erro ao buscar jogador:', error);
       mensagemErro('Erro ao buscar jogador');
       setJogador(null);
     }
@@ -42,19 +38,15 @@ function ListagemEstatisticasJogador() {
   async function buscarEstatisticas() {
     try {
       if (!idJogador || isNaN(idJogador)) {
-        console.error(' idJogador inválido:', idJogador);
         setEstatisticas(null);
         return;
       }
 
       const idJogadorInt = parseInt(idJogador, 10);
-      console.log(' Buscando estatísticas do jogador:', idJogadorInt);
 
       const response = await axios.get(`${BASE_URL}/estatisticas/${idJogadorInt}`);
-      console.log(' Estatísticas encontradas:', response.data);
       setEstatisticas(response.data);
     } catch (error) {
-      console.error(' Erro ao buscar estatísticas:', error);
       // Fallback: criar estatísticas vazias
       setEstatisticas({
         idJogador: parseInt(idJogador, 10),
@@ -84,7 +76,7 @@ function ListagemEstatisticasJogador() {
       <div className='container'>
         <Card title='Carregando...'>
           <div style={{ textAlign: 'center', padding: '20px' }}>
-            ⏳ Carregando estatísticas...
+            Carregando estatísticas...
           </div>
         </Card>
       </div>

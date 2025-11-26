@@ -19,7 +19,6 @@ function ListagemTecnicoPorTime() {
   async function buscarTecnico() {
     try {
       if (!idTime || isNaN(idTime)) {
-        console.error('❌ idTime inválido:', idTime);
         setTecnico(null);
         return;
       }
@@ -40,7 +39,6 @@ function ListagemTecnicoPorTime() {
         setTecnico(null);
       }
     } catch (error) {
-      console.error('❌ Erro ao buscar técnico:', error);
       mensagemErro('Erro ao buscar técnico do time');
       setTecnico(null);
     } finally {
@@ -58,7 +56,7 @@ function ListagemTecnicoPorTime() {
       <div className='container'>
         <Card title='Carregando...'>
           <div style={{ textAlign: 'center', padding: '20px' }}>
-            ⏳ Carregando técnico...
+            Carregando técnico...
           </div>
         </Card>
       </div>

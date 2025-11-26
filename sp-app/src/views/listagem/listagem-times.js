@@ -30,17 +30,14 @@ function ListagemTimes() {
   };
 
   const verJogadores = (id) => {
-    console.log('ID do Time:', id, 'Tipo:', typeof id);
     navigate(`/jogadores-por-time/${id}`);
   };
 
   const verTecnico = (id) => {
-    console.log('ID do Time para técnico:', id, 'Tipo:', typeof id);
     navigate(`/tecnico-por-time/${id}`);
   };
 
   const verCompeticoes = (id) => {
-    console.log('ID do Time para competições:', id, 'Tipo:', typeof id);
     navigate(`/competicoes-por-time/${id}`);
   };
 

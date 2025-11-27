@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Card from '../../components/card';
 import { mensagemSucesso, mensagemErro } from '../../components/toastr';
@@ -17,8 +17,6 @@ function ListagemJogadoresPorTime() {
   const { idTime } = useParams();
   const navigate = useNavigate();
 
-  console.log('🔍 idTime recebido:', idTime, 'Tipo:', typeof idTime);
-
   const [dados, setDados] = React.useState(null);
   const [nomeTime, setNomeTime] = React.useState('');
   const [loading, setLoading] = React.useState(true);
@@ -26,19 +24,16 @@ function ListagemJogadoresPorTime() {
   async function buscarNomeTime() {
     try {
       if (!idTime || isNaN(idTime)) {
-        console.error(' idTime inválido:', idTime);
+        mensagemErro('id do time inválido');
         setNomeTime('Time inválido');
         return;
       }
 
       const idTimeInt = parseInt(idTime, 10);
-      console.log(' Buscando time com ID:', idTimeInt);
 
       const response = await axios.get(`${BASE_URL}/times/${idTimeInt}`);
-      console.log(' Time encontrado:', response.data);
       setNomeTime(response.data.nome);
     } catch (error) {
-      console.log(' Erro ao buscar time específico, usando fallback...');
       try {
         const response = await axios.get(`${BASE_URL}/times`);
         const idTimeInt = parseInt(idTime, 10);
@@ -46,14 +41,13 @@ function ListagemJogadoresPorTime() {
           (time) => time.id === idTimeInt
         );
         if (timeEncontrado) {
-          console.log(' Time encontrado via fallback:', timeEncontrado);
           setNomeTime(timeEncontrado.nome);
         } else {
-          console.error('Time não encontrado:', idTimeInt);
+          mensagemErro('Time não encontrado:', idTimeInt);
           setNomeTime('Time não encontrado');
         }
       } catch (fallbackError) {
-        console.error(' Erro no fallback:', fallbackError);
+        mensagemErro(' Erro no fallback:', fallbackError);
         setNomeTime('Erro ao carregar time');
       }
     }
@@ -62,23 +56,20 @@ function ListagemJogadoresPorTime() {
   async function buscarJogadores() {
     try {
       if (!idTime || isNaN(idTime)) {
-        console.error(' idTime inválido:', idTime);
+        mensagemErro(' id do time inválido:', idTime);
         setDados([]);
         return;
       }
 
       const response = await axios.get(baseURL);
       const idTimeInt = parseInt(idTime, 10);
-      console.log(' Buscando jogadores para time:', idTimeInt);
 
       const jogadoresFiltrados = response.data.filter(
         (jogador) => parseInt(jogador.idTime, 10) === idTimeInt
       );
 
-      console.log(' Jogadores encontrados:', jogadoresFiltrados);
       setDados(jogadoresFiltrados);
-    } catch (error) {// 👈 ALTERAÇÃO: Nova importação
-      console.error(' Erro ao buscar os jogadores:', error);
+    } catch (error) {
       mensagemErro('Erro ao buscar os jogadores');
       setDados([]);
     } finally {
@@ -98,7 +89,6 @@ function ListagemJogadoresPorTime() {
       mensagemSucesso('Jogador excluído com sucesso!');
       setDados(dados.filter((dado) => dado.id !== id));
     } catch (error) {
-      console.error('❌ Erro ao excluir:', error);
       mensagemErro('Erro ao excluir o jogador');
     }
   }
@@ -114,7 +104,7 @@ function ListagemJogadoresPorTime() {
       <div className='container'>
         <Card title='Carregando...'>
           <div style={{ textAlign: 'center', padding: '20px' }}>
-            ⏳ Carregando jogadores...
+            Carregando jogadores...
           </div>
         </Card>
       </div>
@@ -148,8 +138,8 @@ function ListagemJogadoresPorTime() {
                     <tr>
                       <th scope='col'>Nome</th>
                       <th scope='col'>Posição</th>
-                      <th scope='col'>Pé Preferido</th> {/* 👈 ALTERAÇÃO */}
-                      <th scope='col'>Altura</th> {/* 👈 ALTERAÇÃO */}
+                      <th scope='col'>Pé Preferido</th> 
+                      <th scope='col'>Altura</th> 
                       <th scope='col'>Ações</th>
                     </tr>
                   </thead>
@@ -159,8 +149,8 @@ function ListagemJogadoresPorTime() {
                         <tr key={dado.id}>
                           <td>{dado.nome}</td>
                           <td>{dado.posicao || '-'}</td>
-                          <td>{dado.pePreferido || '-'}</td> {/* 👈 ALTERAÇÃO */}
-                          <td>{dado.altura ? `${dado.altura} cm` : '-'}</td> {/* 👈 ALTERAÇÃO */}
+                          <td>{dado.pePreferido || '-'}</td> 
+                          <td>{dado.altura ? `${dado.altura} cm` : '-'}</td> 
                           <td>
                             <Stack spacing={1} padding={0} direction='row'>
                               <IconButton

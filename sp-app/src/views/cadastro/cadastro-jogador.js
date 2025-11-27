@@ -60,6 +60,10 @@ function CadastroJogador() {
         .then(function (response) {
           mensagemSucesso(`Jogador ${nome} cadastrado com sucesso!`);
           navigate(`/listagem-jogador`);
+
+          const novoJogadorId = response.data.id;
+          navigate(`/cadastro-estatisticas-jogador/${novoJogadorId}`);
+          
         })
         .catch(function (error) {
           mensagemErro(error.response.data);

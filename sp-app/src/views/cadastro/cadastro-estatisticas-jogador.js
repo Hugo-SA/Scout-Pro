@@ -49,9 +49,20 @@ function CadastroEstatisticasJogador() {
   }
 
   async function salvar() {
-    // Validação
-    if (!gols || !assistencias || !cartoes || !partidasJogadas) {
+    if (gols === '' || assistencias === '' || participacoes === '' || cartoes === '' || partidasJogadas === '') {
       mensagemErro('Preencha todos os campos obrigatórios!');
+      return;
+    }
+
+    const golsNum = parseInt(gols, 10);
+    const assistenciasNum = parseInt(assistencias, 10);
+    const participacoesNum = parseInt(participacoes, 10);
+    const cartoesNum = parseInt(cartoes, 10);
+    const partidasJogadasNum = parseInt(partidasJogadas, 10);
+
+    if (isNaN(golsNum) || isNaN(assistenciasNum) || isNaN(participacoesNum) || 
+        isNaN(cartoesNum) || isNaN(partidasJogadasNum)) {
+        mensagemErro('Todos os campos devem ser números válidos!');
       return;
     }
 
@@ -67,7 +78,6 @@ function CadastroEstatisticasJogador() {
     data = JSON.stringify(data);
 
     if (!id || id === '') {
-      // Criar nova estatística
       await axios
         .post(baseURL, data, {
           headers: { 'Content-Type': 'application/json' },
@@ -80,7 +90,6 @@ function CadastroEstatisticasJogador() {
           mensagemErro(error.response?.data || 'Erro ao salvar');
         });
     } else {
-      // Atualizar estatística existente
       await axios
         .put(`${baseURL}/${id}`, data, {
           headers: { 'Content-Type': 'application/json' },
@@ -98,13 +107,11 @@ function CadastroEstatisticasJogador() {
   async function buscar() {
     if (idJogador && idJogador !== 'undefined') {
       try {
-        // Buscar jogador
         const responseJogador = await axios.get(
           `${BASE_URL}/jogadores/${idJogador}`
         );
         setJogador(responseJogador.data);
 
-        // Buscar estatísticas do jogador
         try {
           const responseEstat = await axios.get(
             `${baseURL}/${idJogador}`
@@ -117,7 +124,6 @@ function CadastroEstatisticasJogador() {
           setCartoes(responseEstat.data.cartoes);
           setPartidasJogadas(responseEstat.data.partidasJogadas);
         } catch (error) {
-          // Estatísticas não existem ainda
           mensagemErro('Estatísticas não encontradas, será criada uma nova');
         }
       } catch (error) {
@@ -234,7 +240,7 @@ function CadastroEstatisticasJogador() {
                   Salvar
                 </button>
                 <button
-                  onClick={() => navigate(`/estatisticas-jogador/${idJogador}`)}
+                  onClick={(inicializar)}
                   type='button'
                   className='btn btn-danger'
                 >

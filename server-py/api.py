@@ -50,6 +50,14 @@ class JsonDataProvider:
             { "id": 4, "nome": "Tecnico 4", "idade": "1" },
             { "id": 5, "nome": "Tecnico 5", "idade": "1" }
         ].copy()
+    def estatisticas(self):
+        return [
+            { "id": 1, "idJogador": 1, "gols": 0, "assistencias": 0, "participacoes": 0, "cartoes": 0, "partidasJogadas": 0 },
+            { "id": 2, "idJogador": 2, "gols": 0, "assistencias": 0, "participacoes": 0, "cartoes": 0, "partidasJogadas": 0 },
+            { "id": 3, "idJogador": 3, "gols": 0, "assistencias": 1, "participacoes": 0, "cartoes": 1, "partidasJogadas": 1 },
+            { "id": 4, "idJogador": 4, "gols": 1, "assistencias": 0, "participacoes": 1, "cartoes": 0, "partidasJogadas": 1 },
+            { "id": 5, "idJogador": 5, "gols": 1, "assistencias": 0, "participacoes": 1, "cartoes": 0, "partidasJogadas": 1 },
+    ].copy()
 
 class ResourceService:
     def __init__(self, provider: JsonDataProvider):

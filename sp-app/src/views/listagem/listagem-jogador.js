@@ -109,7 +109,6 @@ function ListagemJogadores() {
                       <td>{dado.altura ? `${dado.altura} cm` : '-'}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
-                          {/* 👈 ALTERAÇÃO: Novo botão para ver estatísticas */}
                           <IconButton
                             aria-label='estatisticas'
                             onClick={() => verEstatisticas(dado.id)}

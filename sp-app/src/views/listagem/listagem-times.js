@@ -11,7 +11,7 @@ import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import PersonIcon from '@mui/icons-material/Person';
-import SchoolIcon from '@mui/icons-material/School';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';
@@ -31,10 +31,6 @@ function ListagemTimes() {
 
   const verJogadores = (id) => {
     navigate(`/jogadores-por-time/${id}`);
-  };
-
-  const verTecnico = (id) => {
-    navigate(`/tecnico-por-time/${id}`);
   };
 
   const verCompeticoes = (id) => {
@@ -112,18 +108,19 @@ function ListagemTimes() {
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton
-                            aria-label='tecnico'
-                            onClick={() => verTecnico(dado.id)}
-                            title='Ver Técnico'
-                          >
-                            <SchoolIcon />
-                          </IconButton>
-                          <IconButton
                             aria-label='jogadores'
                             onClick={() => verJogadores(dado.id)}
                             title='Ver Jogadores'
                           >
                             <PersonIcon />
+                          </IconButton>
+                          
+                          <IconButton
+                            aria-label='jogadores'
+                            onClick={() => verCompeticoes(dado.id)}
+                            title='Ver Competicoes'
+                          >
+                            <EmojiEventsIcon />
                           </IconButton>
                           <IconButton
                             aria-label='edit'

@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Card from '../../components/card';
 import { mensagemErro } from '../../components/toastr';
 import Stack from '@mui/material/Stack';
-import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
@@ -47,7 +46,6 @@ function ListagemEstatisticasJogador() {
       const response = await axios.get(`${BASE_URL}/estatisticas/${idJogadorInt}`);
       setEstatisticas(response.data);
     } catch (error) {
-      // Fallback: criar estatísticas vazias
       setEstatisticas({
         idJogador: parseInt(idJogador, 10),
         gols: 0,

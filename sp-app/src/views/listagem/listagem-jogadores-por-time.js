@@ -1,4 +1,4 @@
-import React, {useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Card from '../../components/card';
 import { mensagemSucesso, mensagemErro } from '../../components/toastr';
@@ -150,7 +150,7 @@ function ListagemJogadoresPorTime() {
                           <td>{dado.nome}</td>
                           <td>{dado.posicao || '-'}</td>
                           <td>{dado.pePreferido || '-'}</td> 
-                          <td>{dado.altura ? `${dado.altura} cm` : '-'}</td> 
+                          <td>{dado.altura ? `${dado.altura} cm` : '-'}</td>
                           <td>
                             <Stack spacing={1} padding={0} direction='row'>
                               <IconButton

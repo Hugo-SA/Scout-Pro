@@ -54,9 +54,9 @@ class JsonDataProvider:
         return [
             { "id": 1, "idJogador": 1, "gols": 0, "assistencias": 0, "participacoes": 0, "cartoes": 0, "partidasJogadas": 0 },
             { "id": 2, "idJogador": 2, "gols": 0, "assistencias": 0, "participacoes": 0, "cartoes": 0, "partidasJogadas": 0 },
-            { "id": 3, "idJogador": 3, "gols": 0, "assistencias": 1, "participacoes": 0, "cartoes": 1, "partidasJogadas": 1 },
-            { "id": 4, "idJogador": 4, "gols": 1, "assistencias": 0, "participacoes": 1, "cartoes": 0, "partidasJogadas": 1 },
-            { "id": 5, "idJogador": 5, "gols": 1, "assistencias": 0, "participacoes": 1, "cartoes": 0, "partidasJogadas": 1 },
+            { "id": 3, "idJogador": 3, "gols": 0, "assistencias": 0, "participacoes": 0, "cartoes": 0, "partidasJogadas": 0 },
+            { "id": 4, "idJogador": 4, "gols": 0, "assistencias": 0, "participacoes": 0, "cartoes": 0, "partidasJogadas": 0 },
+            { "id": 5, "idJogador": 5, "gols": 0, "assistencias": 0, "participacoes": 0, "cartoes": 0, "partidasJogadas": 0 },
     ].copy()
 
 class ResourceService:

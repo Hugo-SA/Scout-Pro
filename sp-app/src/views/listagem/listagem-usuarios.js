@@ -4,7 +4,7 @@ import Card from '../../components/card';
 
 import { mensagemSucesso, mensagemErro } from '../../components/toastr';
 
-//import '../custom.css';
+import '../../custom.css';
 
 import { useNavigate } from 'react-router-dom';
 

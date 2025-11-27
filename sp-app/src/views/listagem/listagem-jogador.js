@@ -11,6 +11,7 @@ import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import '../../custom.css';
 
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';

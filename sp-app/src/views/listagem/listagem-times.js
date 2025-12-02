@@ -12,6 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import PersonIcon from '@mui/icons-material/Person';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import BarChartIcon from '@mui/icons-material/BarChart';
 import '../../custom.css';
 
 import axios from 'axios';
@@ -21,6 +22,10 @@ const baseURL = `${BASE_URL}/times`;
 
 function ListagemTimes() {
   const navigate = useNavigate();
+
+  const verEstatisticas = (id) => {
+    navigate(`/estatisticas-time/${id}`);
+  };
 
   const cadastrar = () => {
     navigate(`/cadastro-time`);
@@ -108,6 +113,19 @@ function ListagemTimes() {
                       <td>{tecnicos[dado.idTecnico] || 'Sem técnico'}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
+                          <IconButton
+                            aria-label='edit'
+                            onClick={() => editar(dado.id)}
+                          >
+                            <EditIcon />
+                          </IconButton>
+                          <IconButton
+                            aria-label='estatisticas'
+                            onClick={() => verEstatisticas(dado.id)}
+                            title='Ver Estatísticas'
+                          >
+                            <BarChartIcon />
+                          </IconButton>
                           <IconButton
                             aria-label='jogadores'
                             onClick={() => verJogadores(dado.id)}

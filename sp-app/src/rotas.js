@@ -16,6 +16,8 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import ListagemEstatisticasJogador from './views/listagem/listagem-estatisticas-jogador'; 
 import CadastroEstatisticasJogador from './views/cadastro/cadastro-estatisticas-jogador'; 
 import CadastroCompeticao from './views/cadastro/cadastro-competicao';
+import ListagemEstatisticasTime from './views/listagem/listagem-estatisticas-time';
+import CadastroEstatisticasTime from './views/cadastro/cadastro-estatisticas-time';
 
 function Rotas(props) {
   return (
@@ -36,7 +38,9 @@ function Rotas(props) {
         <Route path="/cadastro-competicao" element={<CadastroCompeticao />} /> 
         <Route path="/cadastro-competicao/:idParam" element={<CadastroCompeticao />} /> 
         <Route path="/estatisticas-jogador/:idJogador" element={<ListagemEstatisticasJogador />} /> 
-        <Route path="/cadastro-estatisticas-jogador/:idJogador" element={<CadastroEstatisticasJogador />} />  
+        <Route path="/cadastro-estatisticas-jogador/:idJogador" element={<CadastroEstatisticasJogador />} />
+        <Route path="/estatisticas-time/:idTime" element={<ListagemEstatisticasTime />} />
+        <Route path="/cadastro-estatisticas-time/:idTime" element={<CadastroEstatisticasTime />} />
       </Routes>
     </BrowserRouter>
   );

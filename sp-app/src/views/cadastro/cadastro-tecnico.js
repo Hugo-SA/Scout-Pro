@@ -8,7 +8,7 @@ import FormGroup from '../../components/form-group';
 
 import { mensagemSucesso, mensagemErro } from '../../components/toastr';
 
-//import '../custom.css';
+import '../../custom.css';
 
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';

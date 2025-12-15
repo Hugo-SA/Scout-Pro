@@ -11,7 +11,7 @@ import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import BarChartIcon from '@mui/icons-material/BarChart';
-import '../../custom.css';
+
 
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';
@@ -84,7 +84,7 @@ function ListagemJogadores() {
             <div className='bs-component'>
               <button
                 type='button'
-                className='btn btn-warning'
+                className='btn btn-primary'
                 onClick={() => cadastrar()}
               >
                 Novo Jogador
@@ -105,7 +105,19 @@ function ListagemJogadores() {
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
                       <td>{times[dado.idTime] || 'Sem time'}</td>
-                      <td>{dado.posicao || '-'}</td>
+                      {/* INÍCIO DA MUDANÇA: Estiliza a Posição com Chips */}
+                      <td>
+                        {dado.posicao ? (
+                          <span 
+                            className={`fm-posicao fm-posicao-${dado.posicao.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                          >
+                            {dado.posicao}
+                          </span>
+                        ) : (
+                          '-'
+                        )}
+                      </td>
+                      {/* FIM DA MUDANÇA */}
                       <td>{dado.pePreferido || '-'}</td>
                       <td>{dado.altura ? `${dado.altura} cm` : '-'}</td>
                       <td>
@@ -126,6 +138,7 @@ function ListagemJogadores() {
                           <IconButton
                             aria-label='delete'
                             onClick={() => excluir(dado.id)}
+                            className='action-icon delete'
                           >
                             <DeleteIcon />
                           </IconButton>

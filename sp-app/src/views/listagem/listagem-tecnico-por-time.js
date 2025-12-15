@@ -13,7 +13,6 @@ function ListagemTecnicoPorTime() {
   const navigate = useNavigate();
 
   const [tecnico, setTecnico] = React.useState(null);
-  const [nomeTime, setNomeTime] = React.useState('');
   const [loading, setLoading] = React.useState(true);
 
   async function buscarTecnico() {
@@ -25,16 +24,10 @@ function ListagemTecnicoPorTime() {
 
       const idTimeInt = parseInt(idTime, 10);
 
-      // Buscar o time
-      const responseTime = await axios.get(`${BASE_URL}/times/${idTimeInt}`);
-      setNomeTime(responseTime.data.nome);
-
-      const idTecnico = responseTime.data.idTecnico;
-
-      // Buscar o técnico
-      if (idTecnico) {
-        const responseTecnico = await axios.get(`${BASE_URL}/tecnico/${idTecnico}`);
-        setTecnico(responseTecnico.data);
+      const response = await axios.get(`${BASE_URL}/times/${idTimeInt}`);
+      if (response.data && response.data.idTecnico) {
+        const tecnicoResponse = await axios.get(`${BASE_URL}/tecnico/${response.data.idTecnico}`);
+        setTecnico(tecnicoResponse.data);
       } else {
         setTecnico(null);
       }
@@ -55,8 +48,8 @@ function ListagemTecnicoPorTime() {
     return (
       <div className='container'>
         <Card title='Carregando...'>
-          <div style={{ textAlign: 'center', padding: '20px' }}>
-            Carregando técnico...
+          <div className='fm-text-center fm-p-20 fm-text-primary'>
+            Buscando dados do técnico...
           </div>
         </Card>
       </div>
@@ -65,7 +58,7 @@ function ListagemTecnicoPorTime() {
 
   return (
     <div className='container'>
-      <Card title={`Técnico do Time: ${nomeTime}`}>
+      <Card title={`Detalhes do Técnico`}>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -76,24 +69,34 @@ function ListagemTecnicoPorTime() {
                   className='btn btn-secondary'
                 >
                   <ArrowBackIcon style={{ marginRight: '8px' }} />
-                  Voltar
+                  Voltar para Times
                 </button>
               </Stack>
 
-              {tecnico ? (
-                <div style={{ padding: '20px', backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
-                  <div style={{ marginBottom: '16px' }}>
-                    <strong>Nome:</strong> {tecnico.nome}
-                  </div>
-                  <div style={{ marginBottom: '16px' }}>
-                    <strong>Idade:</strong> {tecnico.idade}
-                  </div>
-                </div>
-              ) : (
-                <p style={{ textAlign: 'center', color: '#999' }}>
-                  Nenhum técnico cadastrado para este time.
-                </p>
-              )}
+              {/* BLOCO DE INFORMAÇÕES DO TÉCNICO - AGORA DARK MODE */}
+              <div className='fm-info-block fm-mb-20'>
+                <h5 className='fm-info-title fm-text-primary'>
+                   Informações do Técnico
+                </h5>
+                {tecnico ? (
+                    <div className='fm-grid-info fm-text-primary'>
+                        <div>
+                            <strong className='fm-text-muted'>Nome:</strong> <span className='fm-text-primary'>{tecnico.nome}</span>
+                        </div>
+                        <div>
+                            <strong className='fm-text-muted'>Idade:</strong> <span className='fm-text-primary'>{tecnico.idade || '-'}</span>
+                        </div>
+                        <div>
+                            <strong className='fm-text-muted'>Data de Nascimento:</strong> <span className='fm-text-primary'>{tecnico.dataNascimento || '-'}</span>
+                        </div>
+                    </div>
+                ) : (
+                    <div className='fm-text-center fm-text-primary fm-p-20'>
+                        Nenhum técnico associado a este time.
+                    </div>
+                )}
+              </div>
+
             </div>
           </div>
         </div>

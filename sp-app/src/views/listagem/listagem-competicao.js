@@ -13,7 +13,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';
-import '../../custom.css';
+
 
 const baseURL = `${BASE_URL}/competicao`;
 

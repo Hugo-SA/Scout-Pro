@@ -10,7 +10,7 @@ import Stack from '@mui/material/Stack';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import '../../custom.css';
+
 
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';

@@ -148,7 +148,19 @@ function ListagemJogadoresPorTime() {
                       dados.map((dado) => (
                         <tr key={dado.id}>
                           <td>{dado.nome}</td>
-                          <td>{dado.posicao || '-'}</td>
+                          {/* INÍCIO DA MUDANÇA: Estiliza a Posição com Chips */}
+                          <td>
+                            {dado.posicao ? (
+                              <span 
+                                className={`fm-posicao fm-posicao-${dado.posicao.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                              >
+                                {dado.posicao}
+                              </span>
+                            ) : (
+                              '-'
+                            )}
+                          </td>
+                          {/* FIM DA MUDANÇA */}
                           <td>{dado.pePreferido || '-'}</td> 
                           <td>{dado.altura ? `${dado.altura} cm` : '-'}</td>
                           <td>
@@ -162,6 +174,7 @@ function ListagemJogadoresPorTime() {
                               <IconButton
                                 aria-label='delete'
                                 onClick={() => excluir(dado.id)}
+                                className='action-icon delete'
                               >
                                 <DeleteIcon />
                               </IconButton>

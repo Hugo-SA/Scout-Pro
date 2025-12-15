@@ -1,249 +1,426 @@
+/* ========================================= */
+/* 1. PALETA DE CORES ESTILO FOOTBALL MANAGER */
+/* ========================================= */
+:root {
+  /* FUNDOS E TEXTO */
+  --fm-bg-primary: #121212;     /* Fundo principal mais escuro */
+  --fm-bg-secondary: #1E1E1E;   /* Fundo de painéis e cards */
+  --fm-bg-hover: #292929;       /* Fundo ao passar o mouse */
+  --fm-text-primary: #FFFFFF;   /* Texto principal (Branco puro) */
+  --fm-text-muted: #A0A0A0;     /* Texto secundário/campos de formulário */
 
-body {
-    padding-top: 120px;
-  }
-  pre {
-    background: #f7f7f9;
-  }
-  @media (min-width: 768px) {
-    body > .navbar-transparent {
-      box-shadow: none;
-    }
-    body > .navbar-transparent .navbar-nav > .open > a {
-      box-shadow: none;
-    }
-  }
-  #home,
-  #help {
-    font-size: 0.9rem;
-  }
-  #home .navbar,
-  #help .navbar {
-    background: #349aed;
-    background: linear-gradient(145deg, #349aed 50%, #34d8ed 100%);
-    transition: box-shadow 200ms ease-in;
-  }
-  #home .navbar-transparent,
-  #help .navbar-transparent {
-    background: none !important;
-    box-shadow: none;
-  }
-  #home .navbar-brand .nav-link,
-  #help .navbar-brand .nav-link {
-    display: inline-block;
-    margin-right: -30px;
-  }
-  #home .navbar-brand img,
-  #help .navbar-brand img {
-    display: inline-block;
-    margin: 0 10px;
-    width: 30px;
-  }
-  #home .nav-link,
-  #help .nav-link {
-    text-transform: uppercase;
-    font-weight: 500;
-    color: #fff;
-  }
-  #home {
-    padding-top: 0px;
-  }
-  #home .btn {
-    padding: 0.6rem 0.55rem 0.5rem;
-    box-shadow: none;
-    font-size: 0.7rem;
-    font-weight: 500;
-  }
-  .bs-docs-section {
-    margin-top: 4em;
-  }
-  .bs-docs-section .page-header h1 {
-    padding: 2rem 0;
-    font-size: 3rem;
-  }
-  .dropdown-menu.show[aria-labelledby='themes'] {
+  /* DESTAQUES E ACENTOS (AZUL) */
+  --fm-highlight-blue: #4596CE;  /* Azul de destaque primário e links */
+  --fm-highlight-nav-bg: var(--fm-bg-secondary); /* Fundo da Navbar */
+  --fm-highlight-nav-active: #4596CE; /* Destaque de Ativo (Azul) */
+  --fm-highlight-green: #75E26E; /* Verde (Sucesso) */
+  --fm-highlight-gold: #E8C94A;  /* Ouro (Melhor status / Botão Primário) */
+  --fm-highlight-danger: #D9534F; /* Vermelho padrão */
+}
+
+
+/* =========================== */
+/* 2. BASE E TIPOGRAFIA (REFORÇO DE TÍTULOS) */
+/* =========================== */
+html, body {
+    height: 100%; 
+    min-height: 100vh; 
+    background-color: var(--fm-bg-primary) !important; 
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; 
+}
+
+#root, .app-container {
+    min-height: 100%;
+    background-color: var(--fm-bg-primary); 
+    color: var(--fm-text-primary);
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    font-size: 14px; 
+}
+
+.container {
+    background-color: transparent !important; 
+}
+
+h1, h2, h3 {
+    color: var(--fm-text-primary);
+    /* NOVO: Aumenta o peso e o espaçamento para visual FM */
+    font-weight: 800; 
+    letter-spacing: 1px;
+    
+    border-bottom: 1px solid var(--fm-bg-hover); 
+    padding-bottom: 8px;
+    margin-top: 20px;
+    margin-bottom: 15px; 
+    text-transform: uppercase; 
+}
+
+a {
+    color: var(--fm-highlight-blue);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover {
+    color: #5AACE0; 
+}
+
+/* =========================== */
+/* 3. CABEÇALHO SUPERIOR (REFINO AZUL) */
+/* =========================== */
+
+.header, .nav-bar {
+    background-color: var(--fm-highlight-nav-bg); 
+    border-bottom: 2px solid var(--fm-highlight-nav-active); 
+    padding: 10px 30px; 
     display: flex;
-    width: 420px;
-    flex-wrap: wrap;
-  }
-  .dropdown-menu.show[aria-labelledby='themes'] .dropdown-item {
-    width: 33.333%;
-  }
-  .dropdown-menu.show[aria-labelledby='themes'] .dropdown-item:first-child {
-    width: 100%;
-  }
-  .bs-component {
-    position: relative;
-  }
-  .bs-component + .bs-component {
-    margin-top: 1rem;
-  }
-  .bs-component .card {
-    margin-bottom: 1rem;
-  }
-  .bs-component .modal {
-    position: relative;
-    top: auto;
-    right: auto;
-    left: auto;
-    bottom: auto;
-    z-index: 1;
-    display: block;
-  }
-  .bs-component .modal-dialog {
-    width: 90%;
-  }
-  .bs-component .popover {
-    position: relative;
-    display: inline-block;
-    width: 220px;
-    margin: 20px;
-  }
-  .source-button {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 100;
-    font-weight: bold;
-  }
-  .source-button:hover {
+    align-items: center;
+    justify-content: space-between; 
+}
+
+.navbar-brand {
+    color: var(--fm-text-primary) !important;
+    font-weight: 800 !important;
+    font-size: 1.2em; 
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-right: 40px; 
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    color: var(--fm-text-primary);
+    padding: 8px 12px;
+    margin: 0 5px;
+    border-bottom: 2px solid transparent; 
+    transition: all 0.2s ease-in-out; 
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.nav-item:hover, .nav-item:focus, a:focus {
+    color: var(--fm-highlight-nav-active); 
     cursor: pointer;
-  }
-  .bs-component:hover .source-button {
-    display: block;
-  }
-  #source-modal pre {
-    max-height: calc(100vh - 11rem);
-    background-color: rgba(0, 0, 0, 0.7);
-    color: rgba(255, 255, 255, 0.7);
-  }
-  .nav-tabs {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.nav-item.active { 
+    color: var(--fm-highlight-nav-active) !important; 
+    border-bottom-color: var(--fm-highlight-nav-active) !important; 
+    font-weight: 700;
+}
+
+
+/* ================================================= */
+/* 4. ESTILIZAÇÃO E CORREÇÃO CRÍTICA DO COMPONENTE CARD */
+/* ================================================= */
+
+/* 4.1. Contêiner Principal do Card (Anulação Total de Borda/Sombra) */
+.card {
+    background-color: var(--fm-bg-secondary) !important;
+    
+    border: none !important; 
+    border-top: 0px solid transparent !important; 
+    box-shadow: none !important; 
+    
+    margin-bottom: 25px; 
+}
+
+/* 4.2. Cabeçalho do Card (card-header) */
+.card-header {
+    background-color: transparent !important; 
+    color: var(--fm-text-primary) !important;
+    /* NOVO: Reforça o peso e espaçamento */
+    font-weight: 800 !important;
+    letter-spacing: 1px; 
+    
+    text-transform: uppercase;
+    
+    border-top: none !important; 
+    border-bottom: 2px solid var(--fm-bg-hover) !important;
+    
+    padding-bottom: 8px;
     margin-bottom: 15px;
-  }
-  .progress {
-    margin-bottom: 10px;
-  }
-  #footer {
-    margin: 5em 0;
-  }
-  #footer li {
-    float: left;
-    margin-right: 1.5em;
-    margin-bottom: 1.5em;
-  }
-  #footer p {
-    clear: left;
-    margin-bottom: 0;
-  }
-  .splash {
-    padding: 12em 0 6em;
-    background: #349aed;
-    background: linear-gradient(145deg, #349aed 50%, #34d8ed 100%);
-    color: #fff;
-    text-align: center;
-  }
-  .splash .logo {
-    width: 160px;
-  }
-  .splash h1 {
-    font-size: 3em;
-    color: #fff;
-  }
-  .splash #social {
-    margin: 2em 0 3em;
-  }
-  .splash .alert {
-    margin: 2em 0;
+}
+
+/* 4.3. Corpo do Card (card-body) - Elimina o Fundo Branco */
+.card-body {
+    background-color: var(--fm-bg-secondary) !important;
+    padding: 20px !important;
+}
+
+/* Anula fundos de colunas que podem estar definindo o branco */
+[class*="col-"] {
+    background-color: transparent !important;
+}
+
+/* =========================== */
+/* 5. BOTÕES E FORMS (MELHORIA DO BOTÃO SECUNDÁRIO) */
+/* =========================== */
+.btn {
+    padding: 10px 18px; 
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s, border-color 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Botão Primário (Ouro/Ação Principal) - Gradiente Mantido */
+.btn-primary {
+    background: linear-gradient(180deg, var(--fm-highlight-gold) 0%, #E8A84A 100%);
+    color: var(--fm-bg-primary); 
     border: none;
-  }
-  .splash .sponsor a {
-    color: #fff;
-  }
-  .section-tout {
-    padding: 6em 0 1em;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    background-color: #eaf1f1;
-  }
-  .section-tout .fa {
-    margin-right: 0.2em;
-  }
-  .section-tout p {
-    margin-bottom: 5em;
-  }
-  .section-preview {
-    padding: 4em 0 4em;
-  }
-  .section-preview .preview {
-    margin-bottom: 4em;
-    background-color: #eaf1f1;
-  }
-  .section-preview .preview img {
-    max-width: 100%;
-  }
-  .section-preview .preview .image {
-    position: relative;
-  }
-  .section-preview .preview .image:before {
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 0;
-    left: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); 
+}
+.btn-primary:hover {
+    background: linear-gradient(180deg, #F8D95A 0%, var(--fm-highlight-gold) 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Botão Secundário (Neutro/Voltar) - Borda Removida */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--fm-highlight-blue); /* Texto Azul */
+    border: none; /* <--- REMOÇÃO DA BORDA */
+    padding: 10px 12px; /* Ajuste o padding, pois a borda sumiu */
+}
+.btn-secondary:hover {
+    /* Fundo sutil cinza escuro no hover, sem borda */
+    background-color: var(--fm-bg-hover);
+    color: var(--fm-highlight-blue);
+    border: none;
+}
+
+input[type="text"], input[type="password"], textarea, select {
+    background-color: #333333;
+    color: var(--fm-text-primary);
+    border: 1px solid #555555;
+    padding: 10px;
+    border-radius: 3px;
     width: 100%;
-    height: 100%;
-    content: '';
-    pointer-events: none;
-  }
-  .section-preview .preview .options {
-    padding: 2em;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-top: none;
-    text-align: center;
-  }
-  .section-preview .preview .options p {
-    margin-bottom: 2em;
-  }
-  .section-preview .dropdown-menu {
+    box-sizing: border-box;
+}
+input:focus, textarea:focus {
+    border-color: var(--fm-highlight-blue);
+    outline: none;
+}
+
+
+/* =========================== */
+/* 6. TABELAS DE DADOS (REFINO DE DENSIDADE E DESTAQUE DE DADOS) */
+/* =========================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--fm-bg-secondary) !important; 
+    border-top: none !important; 
+}
+
+/* Cabeçalho da Tabela (TH) */
+table th {
+    background-color: var(--fm-bg-secondary) !important; 
+    color: var(--fm-highlight-blue) !important; 
+    font-weight: 700;
+    padding: 10px 10px; 
     text-align: left;
-  }
-  .section-preview .lead {
-    margin-bottom: 2em;
-  }
-  @media (max-width: 767px) {
-    .section-preview .image img {
-      width: 100%;
-    }
-  }
-  .sponsor img {
-    max-width: 100%;
-  }
-  .sponsor #carbonads {
-    max-width: 240px;
-    margin: 0 auto;
-  }
-  .sponsor .carbon-text {
-    display: block;
-    margin-top: 1em;
-    font-size: 12px;
-  }
-  .sponsor .carbon-poweredby {
-    float: right;
-    margin-top: 1em;
-    font-size: 10px;
-  }
-  @media (max-width: 767px) {
-    .splash {
-      padding-top: 8em;
-    }
-    .splash .logo {
-      width: 100px;
-    }
-    .splash h1 {
-      font-size: 2em;
-    }
-    #banner {
-      margin-bottom: 2em;
-      text-align: center;
-    }
-  }
-  
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 3px solid var(--fm-highlight-blue); 
+    border-top: none !important;
+}
+
+/* Células de Dados (TD) - DESTAQUE APLICADO AQUI */
+table td {
+    background-color: var(--fm-bg-secondary) !important;
+    color: var(--fm-text-primary) !important; 
+    padding: 10px 10px; 
+    border-bottom: 1px solid #333333; 
+    border-top: none !important;
+    
+    /* NOVO: Aumenta o peso da fonte para destacar os dados */
+    font-weight: 600; 
+}
+
+/* Efeito Zebrado e Hover (forçado no TD) */
+table tr:nth-child(even) td { 
+    background-color: #1A1A1A !important; 
+    color: var(--fm-text-primary) !important;
+}
+table tr:nth-child(odd) td { 
+    background-color: var(--fm-bg-secondary) !important; 
+    color: var(--fm-text-primary) !important;
+}
+table tr:hover td, .table-hover > tbody > tr:hover td {
+    background-color: var(--fm-bg-hover) !important; 
+    color: var(--fm-text-primary) !important;
+    cursor: default;
+    
+    /* Mantém o negrito ao passar o mouse */
+    font-weight: 700; 
+}
+
+/* =================================== */
+/* 7. ESTILO DOS ÍCONES DE AÇÃO */
+/* =================================== */
+
+.table-actions-cell {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+.table-actions-cell .MuiStack-root {
+    justify-content: center;
+}
+
+.action-icon, .MuiIconButton-root {
+    color: var(--fm-highlight-blue) !important; 
+    margin-right: 8px;
+    cursor: pointer;
+    transition: color 0.2s;
+    font-size: 1.1em; 
+}
+
+.action-icon:hover, .MuiIconButton-root:hover .MuiSvgIcon-root {
+    color: #5AACE0 !important; 
+}
+
+.action-icon.delete, 
+.MuiIconButton-root .MuiSvgIcon-root.delete-icon {
+}
+.action-icon.delete:hover,
+.MuiIconButton-root:hover .MuiSvgIcon-root.delete-icon {
+    color: var(--fm-highlight-danger) !important;
+}
+
+
+/* =================================== */
+/* 8. ESTILOS DE POSIÇÃO (CHIPS) */
+/* =================================== */
+.fm-posicao {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--fm-bg-primary); 
+}
+
+.fm-posicao-goleiro {
+    background-color: var(--fm-highlight-gold); 
+}
+.fm-posicao-zagueiro {
+    background-color: var(--fm-highlight-blue); 
+}
+.fm-posicao-lateral {
+    background-color: #6c757d; 
+}
+.fm-posicao-meio-campo {
+    background-color: var(--fm-highlight-green); 
+}
+.fm-posicao-atacante {
+    background-color: var(--fm-highlight-danger); 
+}
+
+
+/* =================================== */
+/* 9. ESTILOS DE ESTATÍSTICAS E INFORMAÇÃO FM */
+/* =================================== */
+
+/* Utilitários Gerais */
+.fm-text-center { text-align: center !important; }
+.fm-p-20 { padding: 20px !important; }
+.fm-mb-20 { margin-bottom: 20px !important; }
+.fm-mt-30 { margin-top: 30px !important; }
+
+/* Adiciona a classe utilitária de texto primário */
+.fm-text-primary {
+    color: var(--fm-text-primary) !important; /* FORÇA O BRANCO */
+}
+.fm-text-muted {
+    color: var(--fm-text-muted) !important; /* FORÇA O CINZA */
+}
+
+.fm-info-title {
+    color: var(--fm-text-primary) !important; 
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--fm-bg-hover);
+}
+
+/* Blocos de Informação Simples (substitui fundos brancos) */
+.fm-info-block {
+    padding: 20px;
+    background-color: var(--fm-bg-secondary); 
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #333333; 
+}
+
+.fm-grid-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+/* 9.1. Cards de Estatísticas */
+.fm-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.fm-stat-card {
+    padding: 15px;
+    background-color: var(--fm-bg-secondary);
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #333333;
+    transition: transform 0.2s;
+}
+.fm-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.fm-stat-label {
+    color: var(--fm-text-muted) !important; 
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+.fm-stat-value {
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+/* 9.2. Cores FM para Estatísticas (Fundo Escuro + Texto Colorido) */
+.fm-stat-gold .fm-stat-value, .fm-text-stat-gold {
+    color: var(--fm-highlight-gold) !important;
+}
+.fm-stat-blue .fm-stat-value, .fm-text-stat-blue {
+    color: var(--fm-highlight-blue) !important;
+}
+.fm-stat-green-soft .fm-stat-value, .fm-text-stat-green {
+    color: var(--fm-highlight-green) !important;
+}
+.fm-stat-muted .fm-stat-value, .fm-text-stat-muted {
+    color: var(--fm-text-muted) !important;
+}
+.fm-stat-danger .fm-stat-value, .fm-text-stat-danger {
+    color: var(--fm-highlight-danger) !important;
+}

@@ -13,7 +13,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import PersonIcon from '@mui/icons-material/Person';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import BarChartIcon from '@mui/icons-material/BarChart';
-import '../../custom.css';
+
 
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';

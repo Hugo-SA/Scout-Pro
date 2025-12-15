@@ -74,7 +74,7 @@ function ListagemEstatisticasTime() {
     return (
       <div className='container'>
         <Card title='Carregando...'>
-          <div style={{ textAlign: 'center', padding: '20px' }}>
+          <div className='fm-text-center fm-p-20 fm-text-primary'>
             Carregando estatísticas...
           </div>
         </Card>
@@ -86,7 +86,7 @@ function ListagemEstatisticasTime() {
     return (
       <div className='container'>
         <Card title='Erro'>
-          <div style={{ textAlign: 'center', padding: '20px' }}>
+          <div className='fm-text-center fm-p-20 fm-text-primary'>
              Time não encontrado
           </div>
         </Card>
@@ -112,168 +112,87 @@ function ListagemEstatisticasTime() {
                 <button
                   onClick={editar}
                   type='button'
-                  className='btn btn-warning'
+                  className='btn btn-primary' 
                 >
                   <EditIcon style={{ marginRight: '8px' }} />
                   Editar Estatísticas
                 </button>
               </Stack>
 
-              <div
-                style={{
-                  padding: '20px',
-                  backgroundColor: '#f9f9f9',
-                  borderRadius: '8px',
-                  marginBottom: '20px',
-                  border: '1px solid #ddd',
-                }}
-              >
-                <h5 style={{ marginBottom: '15px', color: '#333' }}>
+              {/* INFORMAÇÕES DO TIME */}
+              <div className='fm-info-block fm-mb-20'>
+                <h5 className='fm-info-title fm-text-primary'>
                    Informações do Time
                 </h5>
+                <div className='fm-grid-info fm-text-primary'> {/* FORÇA O TEXTO PRINCIPAL A SER BRANCO AQUI */}
+                    <div>
+                        <strong className='fm-text-muted'>Nome:</strong> <span className='fm-text-primary'>{time.nome}</span>
+                    </div>
+                    <div>
+                        <strong className='fm-text-muted'>ID Técnico:</strong> <span className='fm-text-primary'>{time.idTecnico || '-'}</span>
+                    </div>
+                </div>
               </div>
 
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                  gap: '15px',
-                  marginBottom: '20px',
-                }}
-              >
-                <div
-                  style={{
-                    padding: '20px',
-                    backgroundColor: '#fff3cd',
-                    borderRadius: '8px',
-                    border: '1px solid #ffc107',
-                    textAlign: 'center',
-                  }}
-                >
-                  <h6 style={{ color: '#856404', marginBottom: '10px' }}> Gols</h6>
-                  <div
-                    style={{
-                      fontSize: '32px',
-                      fontWeight: 'bold',
-                      color: '#f5a623',
-                    }}
-                  >
+              {/* BLOCOS DE ESTATÍSTICAS */}
+              <div className='fm-stats-grid fm-mb-20'>
+                
+                {/* Gols (Ouro/Destaque) */}
+                <div className='fm-stat-card fm-stat-muted'>
+                  <h6 className='fm-stat-label fm-text-primary'> Gols</h6>
+                  <div className='fm-stat-value'>
                     {estatisticas?.gols || 0}
                   </div>
                 </div>
                 
 
-                <div
-                  style={{
-                    padding: '20px',
-                    backgroundColor: '#d4edda',
-                    borderRadius: '8px',
-                    border: '1px solid #28a745',
-                    textAlign: 'center',
-                  }}
-                >
-                  <h6 style={{ color: '#155724', marginBottom: '10px' }}> Vitorias</h6>
-                  <div
-                    style={{
-                      fontSize: '32px',
-                      fontWeight: 'bold',
-                      color: '#28a745',
-                    }}
-                  >
+                {/* Vitorias (Verde/Sucesso) */}
+                <div className='fm-stat-card fm-stat-green-soft'>
+                  <h6 className='fm-stat-label fm-text-primary'> Vitorias</h6>
+                  <div className='fm-stat-value'>
                     {estatisticas?.vitorias || 0}
                   </div>
                 </div>
 
 
-                <div
-                  style={{
-                    padding: '20px',
-                    backgroundColor: '#fff3cd',
-                    borderRadius: '8px',
-                    border: '1px solid #ff0000',
-                    textAlign: 'center',
-                  }}
-                >
-                  <h6 style={{ color: '#856404', marginBottom: '10px' }}> Derrotas</h6>
-                  <div
-                    style={{
-                      fontSize: '32px',
-                      fontWeight: 'bold',
-                      color: '#f5a623',
-                    }}
-                  >
+                {/* Derrotas (Vermelho/Perigo) */}
+                <div className='fm-stat-card fm-stat-danger'>
+                  <h6 className='fm-stat-label fm-text-primary'> Derrotas</h6>
+                  <div className='fm-stat-value'>
                     {estatisticas?.derrotas || 0}
                   </div>
                 </div>
 
 
-                <div
-                  style={{
-                    padding: '20px',
-                    backgroundColor: '#d1ecf1',
-                    borderRadius: '8px',
-                    border: '1px solid #17a2b8',
-                    textAlign: 'center',
-                  }}
-                >
-                  <h6 style={{ color: '#0c5460', marginBottom: '10px' }}> Empates</h6>
-                  <div
-                    style={{
-                      fontSize: '32px',
-                      fontWeight: 'bold',
-                      color: '#17a2b8',
-                    }}
-                  >
+                {/* Empates (Azul/Neutro) */}
+                <div className='fm-stat-card fm-stat-blue'>
+                  <h6 className='fm-stat-label fm-text-primary'> Empates</h6>
+                  <div className='fm-stat-value'>
                     {estatisticas?.empates || 0}
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    padding: '20px',
-                    backgroundColor: '#e2e3e5',
-                    borderRadius: '8px',
-                    border: '1px solid #6c757d',
-                    textAlign: 'center',
-                  }}
-                >
-                  <h6 style={{ color: '#383d41', marginBottom: '10px' }}> Partidas Jogadas</h6>
-                  <div
-                    style={{
-                      fontSize: '32px',
-                      fontWeight: 'bold',
-                      color: '#6c757d',
-                    }}
-                  >
+                {/* Partidas Jogadas (Cinza/Muted) */}
+                <div className='fm-stat-card fm-stat-muted'>
+                  <h6 className='fm-stat-label fm-text-primary'> Partidas Jogadas</h6>
+                  <div className='fm-stat-value'>
                     {estatisticas?.partidasJogadas || 0}
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    padding: '20px',
-                    backgroundColor: '#f8d7da',
-                    borderRadius: '8px',
-                    border: '1px solid #f5c6cb',
-                    textAlign: 'center',
-                  }}
-                >
-                  <h6 style={{ color: '#721c24', marginBottom: '10px' }}> Cartões</h6>
-                  <div
-                    style={{
-                      fontSize: '32px',
-                      fontWeight: 'bold',
-                      color: '#dc3545',
-                    }}
-                  >
+                {/* Cartões (Vermelho/Destaque) */}
+                <div className='fm-stat-card fm-stat-danger'>
+                  <h6 className='fm-stat-label fm-text-primary'> Cartões</h6>
+                  <div className='fm-stat-value'>
                     {estatisticas?.cartoes || 0}
                   </div>
                 </div>
               </div>
 
               
-              <div style={{ marginTop: '30px' }}>
-                <h5 style={{ marginBottom: '15px', color: '#333' }}>
+              {/* RESUMO DE ESTATÍSTICAS (TABELA) */}
+              <div className='fm-mt-30'>
+                <h5 className='fm-info-title fm-text-primary'>
                    Resumo de Estatísticas
                 </h5>
                 <table className='table table-hover'>
@@ -288,7 +207,7 @@ function ListagemEstatisticasTime() {
                     <tr>
                       <td> Gols</td>
                       <td>{estatisticas?.gols || 0}</td>
-                      <td>
+                      <td className='fm-text-stat-gold'>
                         {estatisticas?.partidasJogadas
                           ? (
                               (estatisticas?.gols || 0) /
@@ -300,7 +219,7 @@ function ListagemEstatisticasTime() {
                     <tr>
                       <td> Vitorias</td>
                       <td>{estatisticas?.vitorias || 0}</td>
-                      <td>
+                      <td className='fm-text-stat-green'>
                         {estatisticas?.partidasJogadas
                           ? (
                               (estatisticas?.vitorias || 0) /
@@ -312,7 +231,7 @@ function ListagemEstatisticasTime() {
                     <tr>
                       <td> Empates</td>
                       <td>{estatisticas?.empates || 0}</td>
-                      <td>
+                      <td className='fm-text-stat-blue'>
                         {estatisticas?.partidasJogadas
                           ? (
                               (estatisticas?.empates || 0) /
@@ -322,9 +241,9 @@ function ListagemEstatisticasTime() {
                       </td>
                     </tr>
                     <tr>
-                      <td> Participações</td>
+                      <td> Derrotas</td>
                       <td>{estatisticas?.derrotas || 0}</td>
-                      <td>
+                      <td className='fm-text-stat-danger'>
                         {estatisticas?.partidasJogadas
                           ? (
                               (estatisticas?.derrotas || 0) /
@@ -336,7 +255,7 @@ function ListagemEstatisticasTime() {
                     <tr>
                       <td> Cartões</td>
                       <td>{estatisticas?.cartoes || 0}</td>
-                      <td>
+                      <td className='fm-text-stat-danger'>
                         {estatisticas?.partidasJogadas
                           ? (
                               (estatisticas?.cartoes || 0) /
@@ -348,7 +267,7 @@ function ListagemEstatisticasTime() {
                     <tr>
                       <td> Partidas Jogadas</td>
                       <td>{estatisticas?.partidasJogadas || 0}</td>
-                      <td>-</td>
+                      <td className='fm-text-primary'>-</td>
                     </tr>
                   </tbody>
                 </table>

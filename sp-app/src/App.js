@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootswatch/dist/flatly/bootstrap.css';
 import 'toastr/build/toastr.min';
 import 'toastr/build/toastr.css';
-import './custom.css'; // <-- NOVO: Importe aqui, APÓS o Bootstrap!
+import './custom.css'; 
 
 import Navbar from './components/navbar.js';
 import Rotas from './rotas.js';

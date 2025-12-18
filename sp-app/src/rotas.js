@@ -18,6 +18,8 @@ import CadastroEstatisticasJogador from './views/cadastro/cadastro-estatisticas-
 import CadastroCompeticao from './views/cadastro/cadastro-competicao';
 import ListagemEstatisticasTime from './views/listagem/listagem-estatisticas-time';
 import CadastroEstatisticasTime from './views/cadastro/cadastro-estatisticas-time';
+import ListagemEstatisticasCompeticao from './views/listagem/listagem-estatisticas-competicao';
+import CadastroPartida from './views/cadastro/cadastro-partida';
 
 function Rotas(props) {
   return (
@@ -41,6 +43,9 @@ function Rotas(props) {
         <Route path="/cadastro-estatisticas-jogador/:idJogador" element={<CadastroEstatisticasJogador />} />
         <Route path="/estatisticas-time/:idTime" element={<ListagemEstatisticasTime />} />
         <Route path="/cadastro-estatisticas-time/:idTime" element={<CadastroEstatisticasTime />} />
+        <Route path="/estatisticas-competicao/:idCompeticao" element={<ListagemEstatisticasCompeticao />} />
+        <Route path="/cadastro-partida/:idCompeticao/nova" element={<CadastroPartida />} />
+        <Route path="/cadastro-partida/:idCompeticao/:idPartida" element={<CadastroPartida />} />
       </Routes>
     </BrowserRouter>
   );

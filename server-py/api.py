@@ -66,6 +66,20 @@ class JsonDataProvider:
             { "id": 4, "idTime": 4, "gols": 0, "vitorias": 0, "derrotas": 0, "empates": 0 , "cartoes": 0, "partidasJogadas": 0 },
             { "id": 5, "idTime": 5, "gols": 0, "vitorias": 0, "derrotas": 0, "empates": 0 , "cartoes": 0, "partidasJogadas": 0 },
     ].copy()
+    def partidas(self):
+        return [
+            { 
+                "id": 1, 
+                "idCompeticao": 1, 
+                "timeCasa": 1, 
+                "timeVisitante": 2, 
+                "placar": "2-1", 
+                "data": "2024-11-20", 
+                "golsCasa": 2, 
+                "golsVisitante": 1,
+                "concluida": True
+            },
+    ].copy()
 
 class ResourceService:
     def __init__(self, provider: JsonDataProvider):

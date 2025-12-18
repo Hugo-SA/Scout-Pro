@@ -10,7 +10,7 @@ import Stack from '@mui/material/Stack';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-
+import BarChartIcon from '@mui/icons-material/BarChart';
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';
 import '../../custom.css';
@@ -26,6 +26,9 @@ function ListagemCompeticao() {
 
   const editar = (id) => {
     navigate(`/cadastro-competicao/${id}`);
+  };
+   const verEstatisticas = (id) => {
+    navigate(`/estatisticas-competicao/${id}`);
   };
 
   const [dados, setDados] = React.useState(null);
@@ -110,6 +113,13 @@ function ListagemCompeticao() {
                       <td>{dado.dataTermino}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
+                          <IconButton
+                            aria-label='estatisticas'
+                            onClick={() => verEstatisticas(dado.id)}
+                            title='Ver Estatísticas'
+                          >
+                            <BarChartIcon />
+                          </IconButton>
                           <IconButton
                             aria-label='edit'
                             onClick={() => editar(dado.id)}

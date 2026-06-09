@@ -16,7 +16,7 @@ function CadastroCompeticao() {
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL}/competicao`;
+  const baseURL = `${BASE_URL}/competicaos`;
 
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
@@ -30,13 +30,13 @@ function CadastroCompeticao() {
     if (idParam == null) {
       setId('');
       setNome('');
-      setIdTimes([]); 
+      setIdTimes([]);
       setDataInicio('');
       setDataTermino('');
     } else {
       setId(dados.id);
       setNome(dados.nome);
-      setIdTimes(dados.idTimes || []); 
+      setIdTimes(dados.idTimes || []);
       setDataInicio(dados.dataInicio);
       setDataTermino(dados.dataTermino);
     }
@@ -96,7 +96,7 @@ function CadastroCompeticao() {
       });
       setId(dados.id);
       setNome(dados.nome);
-      setIdTimes(dados.idTimes || []); 
+      setIdTimes(dados.idTimes || []);
       setDataInicio(dados.dataInicio);
       setDataTermino(dados.dataTermino);
     }

@@ -69,20 +69,20 @@ function CadastroTime() {
   }
 
   async function buscar() {
-    if(idParam != null){
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
-      setDados(response.data);
-    });
-    setId(dados.id);
-    setNome(dados.nome);
-    setIdTecnico(dados.idTecnico);
+    if (idParam != null) {
+      await axios.get(`${baseURL}/${idParam}`).then((response) => {
+        setDados(response.data);
+      });
+      setId(dados.id);
+      setNome(dados.nome);
+      setIdTecnico(dados.idTecnico);
     }
   }
-  
+
   const [dadosTecnicos, setDadosTecnicos] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/tecnico`).then((response) => {
+    axios.get(`${BASE_URL}/tecnicos`).then((response) => {
       setDadosTecnicos(response.data);
     });
   }, []);

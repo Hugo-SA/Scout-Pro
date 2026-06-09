@@ -15,7 +15,7 @@ import axios from 'axios';
 import { BASE_URL } from '../../config/axios';
 
 
-const baseURL = `${BASE_URL}/competicao`;
+const baseURL = `${BASE_URL}/competicaos`;
 
 function ListagemCompeticao() {
   const navigate = useNavigate();
@@ -95,7 +95,7 @@ function ListagemCompeticao() {
                 <thead>
                   <tr>
                     <th scope='col'>Nome</th>
-                    <th scope='col'>Times Participantes</th> 
+                    <th scope='col'>Times Participantes</th>
                     <th scope='col'>Data Início</th>
                     <th scope='col'>Data Término</th>
                     <th scope='col'>Ações</th>

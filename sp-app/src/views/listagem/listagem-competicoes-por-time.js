@@ -1,4 +1,4 @@
-import React, {useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Card from '../../components/card';
 import { mensagemSucesso, mensagemErro } from '../../components/toastr';
@@ -11,7 +11,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';
 
-const baseURL = `${BASE_URL}/competicao`;
+const baseURL = `${BASE_URL}/competicaos`;
 
 function ListagemCompeticoesPorTime() {
   const { idTime } = useParams();

@@ -44,7 +44,7 @@ function ListagemTimes() {
   };
 
   const [dados, setDados] = React.useState(null);
-  const [tecnicos, setTecnicos] = React.useState({}); 
+  const [tecnicos, setTecnicos] = React.useState({});
 
   async function excluir(id) {
     let data = JSON.stringify({ id });
@@ -68,7 +68,7 @@ function ListagemTimes() {
   }
 
   React.useEffect(() => {
-    axios.get(`${BASE_URL}/tecnico`).then((response) => {
+    axios.get(`${BASE_URL}/tecnicos`).then((response) => {
       const tecnicosMap = {};
       response.data.forEach((tecnico) => {
         tecnicosMap[tecnico.id] = tecnico.nome;
@@ -133,7 +133,7 @@ function ListagemTimes() {
                           >
                             <PersonIcon />
                           </IconButton>
-                          
+
                           <IconButton
                             aria-label='jogadores'
                             onClick={() => verCompeticoes(dado.id)}

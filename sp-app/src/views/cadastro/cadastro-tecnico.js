@@ -18,7 +18,7 @@ function CadastroTecnico() {
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL}/tecnico`;
+  const baseURL = `${BASE_URL}/tecnicos`;
 
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
@@ -39,7 +39,7 @@ function CadastroTecnico() {
   }
 
   async function salvar() {
-    let data = { id, nome, idade};
+    let data = { id, nome, idade };
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -69,13 +69,13 @@ function CadastroTecnico() {
   }
 
   async function buscar() {
-    if(idParam != null){
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
-      setDados(response.data);
-    });
-    setId(dados.id);
-    setNome(dados.nome);
-    setIdade(dados.idade);
+    if (idParam != null) {
+      await axios.get(`${baseURL}/${idParam}`).then((response) => {
+        setDados(response.data);
+      });
+      setId(dados.id);
+      setNome(dados.nome);
+      setIdade(dados.idade);
     }
   }
 

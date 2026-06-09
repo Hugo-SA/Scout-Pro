@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';
 
-const baseURL = `${BASE_URL}/tecnico`;
+const baseURL = `${BASE_URL}/tecnicos`;
 
 function ListagemTecnico() {
   const navigate = useNavigate();
@@ -88,7 +88,7 @@ function ListagemTecnico() {
                   <tr>
                     <th scope='col'>Nome</th>
                     <th scope='col'>Idade</th>
-                    <th scope='col'>Time</th> 
+                    <th scope='col'>Time</th>
                     <th scope='col'>Ações</th>
                   </tr>
                 </thead>
@@ -97,7 +97,7 @@ function ListagemTecnico() {
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
                       <td>{dado.idade}</td>
-                      <td>{times[dado.id] || 'Sem time'}</td> 
+                      <td>{times[dado.id] || 'Sem time'}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton

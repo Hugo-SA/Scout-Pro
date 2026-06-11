@@ -84,7 +84,7 @@ function ListagemJogadores() {
             <div className='bs-component'>
               <button
                 type='button'
-                className='btn btn-primary'
+                className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
                 Novo Jogador
@@ -108,7 +108,7 @@ function ListagemJogadores() {
                       {/* INÍCIO DA MUDANÇA: Estiliza a Posição com Chips */}
                       <td>
                         {dado.posicao ? (
-                          <span 
+                          <span
                             className={`fm-posicao fm-posicao-${dado.posicao.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                           >
                             {dado.posicao}

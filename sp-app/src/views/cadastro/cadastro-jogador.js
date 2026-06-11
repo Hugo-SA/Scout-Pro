@@ -33,22 +33,21 @@ function CadastroJogador() {
       setId('');
       setNome('');
       setIdTime(0);
-      setIdade(''); 
-      setPosicao(''); 
-      setPePreferido(''); 
-      setAltura(''); 
+      setIdade('');
+      setPosicao('');
+      setPePreferido('');
+      setAltura('');
     } else {
       setId(dados.id);
       setNome(dados.nome);
       setIdTime(dados.idTime);
-      setIdade(dados.idade); 
-      setPosicao(dados.posicao); 
-      setPePreferido(dados.pePreferido); 
-      setAltura(dados.altura); 
+      setIdade(dados.idade);
+      setPosicao(dados.posicao);
+      setPePreferido(dados.pePreferido);
+      setAltura(dados.altura);
     }
   }
 
-  //  Incluir todos os campos no objeto data
   async function salvar() {
     let data = { id, nome, idTime, idade, posicao, pePreferido, altura };
     data = JSON.stringify(data);
@@ -61,9 +60,6 @@ function CadastroJogador() {
           mensagemSucesso(`Jogador ${nome} cadastrado com sucesso!`);
           navigate(`/listagem-jogador`);
 
-          const novoJogadorId = response.data.id;
-          navigate(`/cadastro-estatisticas-jogador/${novoJogadorId}`);
-          
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -91,10 +87,10 @@ function CadastroJogador() {
       setId(dados.id);
       setNome(dados.nome);
       setIdTime(dados.idTime);
-      setIdade(dados.idade); 
-      setPosicao(dados.posicao); 
-      setPePreferido(dados.pePreferido); 
-      setAltura(dados.altura); 
+      setIdade(dados.idade);
+      setPosicao(dados.posicao);
+      setPePreferido(dados.pePreferido);
+      setAltura(dados.altura);
     }
   }
 

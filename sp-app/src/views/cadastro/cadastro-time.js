@@ -8,8 +8,6 @@ import FormGroup from '../../components/form-group';
 
 import { mensagemSucesso, mensagemErro } from '../../components/toastr';
 
-//import '../custom.css';
-
 import axios from 'axios';
 import { BASE_URL } from '../../config/axios';
 
@@ -24,75 +22,76 @@ function CadastroTime() {
   const [nome, setNome] = useState('');
   const [idTecnico, setIdTecnico] = useState(0);
 
-  const [dados, setDados] = React.useState([]);
+  const [dadosTecnicos, setDadosTecnicos] = useState([]);
 
   function inicializar() {
     if (idParam == null) {
       setId('');
       setNome('');
-      setIdTecnico(0)
+      setIdTecnico(0);
     } else {
-      setId(dados.id);
-      setNome(dados.nome);
-      setIdTecnico(dados.idTecnico);
+      buscar();
     }
   }
 
   async function salvar() {
-    let data = { id, nome };
-    data = JSON.stringify(data);
-    if (idParam == null) {
-      await axios
-        .post(baseURL, data, {
-          headers: { 'Content-Type': 'application/json' },
-        })
-        .then(function (response) {
-          mensagemSucesso(`Time ${nome} cadastrado com sucesso!`);
-          navigate(`/listagem-times`);
-        })
-        .catch(function (error) {
-          mensagemErro(error.response.data);
-        });
-    } else {
-      await axios
-        .put(`${baseURL}/${idParam}`, data, {
-          headers: { 'Content-Type': 'application/json' },
-        })
-        .then(function (response) {
-          mensagemSucesso(`Time ${nome} alterado com sucesso!`);
-          navigate(`/listagem-times`);
-        })
-        .catch(function (error) {
-          mensagemErro(error.response.data);
-        });
+    const data = {
+      id,
+      nome,
+      idTecnico
+    };
+
+    console.log('Enviando:', data);
+
+    try {
+      if (idParam == null) {
+        await axios.post(baseURL, data);
+
+        mensagemSucesso(`Time ${nome} cadastrado com sucesso!`);
+      } else {
+        await axios.put(`${baseURL}/${idParam}`, data);
+
+        mensagemSucesso(`Time ${nome} alterado com sucesso!`);
+      }
+
+      navigate('/listagem-times');
+    } catch (error) {
+      mensagemErro(
+        error?.response?.data || 'Erro ao salvar o time.'
+      );
     }
   }
 
   async function buscar() {
-    if (idParam != null) {
-      await axios.get(`${baseURL}/${idParam}`).then((response) => {
-        setDados(response.data);
-      });
-      setId(dados.id);
-      setNome(dados.nome);
-      setIdTecnico(dados.idTecnico);
+    try {
+      const response = await axios.get(`${baseURL}/${idParam}`);
+
+      const time = response.data;
+
+      setId(time.id);
+      setNome(time.nome);
+      setIdTecnico(time.idTecnico || 0);
+    } catch (error) {
+      mensagemErro('Erro ao carregar dados do time.');
     }
   }
 
-  const [dadosTecnicos, setDadosTecnicos] = React.useState(null);
-
   useEffect(() => {
-    axios.get(`${BASE_URL}/tecnicos`).then((response) => {
-      setDadosTecnicos(response.data);
-    });
+    axios
+      .get(`${BASE_URL}/tecnicos`)
+      .then((response) => {
+        setDadosTecnicos(response.data);
+      })
+      .catch(() => {
+        mensagemErro('Erro ao carregar técnicos.');
+      });
   }, []);
 
   useEffect(() => {
-    buscar(); // eslint-disable-next-line
-  }, [id]);
-
-  if (!dados) return null;
-  if (!dadosTecnicos) return null;
+    if (idParam != null) {
+      buscar();
+    }
+  }, [idParam]);
 
   return (
     <div className='container'>
@@ -110,24 +109,30 @@ function CadastroTime() {
                   onChange={(e) => setNome(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Tecnico: *' htmlFor='selectTecnico'>
+
+              <FormGroup label='Técnico: *' htmlFor='selectTecnico'>
                 <select
                   className='form-select'
                   id='selectTecnico'
                   name='idTecnico'
                   value={idTecnico}
-                  onChange={(e) => setIdTecnico(e.target.value)}
+                  onChange={(e) =>
+                    setIdTecnico(Number(e.target.value))
+                  }
                 >
-                  <option key='0' value='0'>
-                    {' '}
-                  </option>
-                  {dadosTecnicos.map((dado) => (
-                    <option key={dado.id} value={dado.id}>
-                      {dado.nome}
+                  <option value={0}>Selecione um técnico</option>
+
+                  {dadosTecnicos.map((tecnico) => (
+                    <option
+                      key={tecnico.id}
+                      value={tecnico.id}
+                    >
+                      {tecnico.nome}
                     </option>
                   ))}
                 </select>
               </FormGroup>
+
               <Stack spacing={1} padding={1} direction='row'>
                 <button
                   onClick={salvar}
@@ -136,6 +141,7 @@ function CadastroTime() {
                 >
                   Salvar
                 </button>
+
                 <button
                   onClick={inicializar}
                   type='button'

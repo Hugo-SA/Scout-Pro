@@ -1,2 +1,3 @@
 # Scout-Pro
 Repositório dedicado ao Software de scouting "Scout Pro''
+ A idéia é o desenvolvimento do front-end de um sistema web de scouting esportivo utilizando JavaScript e React. O projeto consistiu na criação de uma interface moderna e responsiva para gerenciamento e visualização de jogadores, equipes, competições e avaliações técnicas, consumindo uma API REST. Foram implementados componentes reutilizáveis, navegação entre páginas, formulários para cadastro e edição de informações, além da integração com o back-end para operações de consulta, criação, atualização e exclusão de dados (CRUD).
